@@ -98,6 +98,7 @@ const ChatWidget: React.FC = () => {
     <>
       {/* Floating Button */}
       <button
+        id="chat-trigger"
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center ${
           isOpen ? 'bg-slate-700 rotate-90' : 'bg-sage-600 hover:bg-sage-700'

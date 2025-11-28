@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dr. André Silva | Psicologia Clínica</title>
+    <title>Dr. André Silva | Psicologia Clínica & TCC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
@@ -28,14 +29,33 @@
                 900: '#0c4a6e',
               },
               sage: {
+                50: '#f4f9f7',
                 100: '#E7F3EF',
                 200: '#Ccece6',
-                500: '#84B59F',
+                300: '#a3d3c4',
+                400: '#84B59F',
+                500: '#629e86',
+                600: '#4a826d',
                 700: '#5C8D75',
+                800: '#3d6352',
+                900: '#2d4a3d',
               },
               sand: {
+                50: '#fdfdfb',
                 100: '#FDFCF8',
                 200: '#F3F0E6',
+                300: '#e6e2d1',
+              }
+            },
+            animation: {
+              'blob': 'blob 7s infinite',
+            },
+            keyframes: {
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
               }
             }
           }
@@ -62,12 +82,13 @@
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0"
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^11.0.28"
   }
 }
 </script>
 </head>
-  <body class="bg-sand-100 text-slate-800 font-sans antialiased selection:bg-sage-200 selection:text-sage-700">
+  <body class="bg-sand-50 text-slate-800 font-sans antialiased selection:bg-sage-200 selection:text-sage-800">
     <div id="root"></div>
   </body>
 </html>
