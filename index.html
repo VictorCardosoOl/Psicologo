@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dr. André Silva | Psicologia Clínica & TCC</title>
+    <title>Luiz Felipe Braziliano | Psicólogo Clínico - TCC</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Lato', 'sans-serif'],
+              sans: ['Inter', 'sans-serif'],
               serif: ['Playfair Display', 'serif'],
             },
             colors: {
@@ -23,32 +23,28 @@
                 300: '#7dd3fc',
                 400: '#38bdf8',
                 500: '#0ea5e9',
-                600: '#0284c7',
+                600: '#0284c7', // Azul principal
                 700: '#0369a1',
                 800: '#075985',
                 900: '#0c4a6e',
               },
-              sage: {
-                50: '#f4f9f7',
-                100: '#E7F3EF',
-                200: '#Ccece6',
-                300: '#a3d3c4',
-                400: '#84B59F',
-                500: '#629e86',
-                600: '#4a826d',
-                700: '#5C8D75',
-                800: '#3d6352',
-                900: '#2d4a3d',
+              slate: {
+                50: '#f8fafc',
+                100: '#f1f5f9',
+                200: '#e2e8f0',
+                300: '#cbd5e1',
+                400: '#94a3b8',
+                500: '#64748b',
+                600: '#475569',
+                700: '#334155',
+                800: '#1e293b', // Cinza escuro / Preto suave
+                900: '#0f172a',
               },
-              sand: {
-                50: '#fdfdfb',
-                100: '#FDFCF8',
-                200: '#F3F0E6',
-                300: '#e6e2d1',
-              }
+              white: '#ffffff',
             },
             animation: {
               'blob': 'blob 7s infinite',
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
             },
             keyframes: {
               blob: {
@@ -56,6 +52,10 @@
                 '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
                 '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
                 '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
               }
             }
           }
@@ -88,7 +88,7 @@
 }
 </script>
 </head>
-  <body class="bg-sand-50 text-slate-800 font-sans antialiased selection:bg-sage-200 selection:text-sage-800">
+  <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-primary-200 selection:text-primary-900">
     <div id="root"></div>
   </body>
 </html>
