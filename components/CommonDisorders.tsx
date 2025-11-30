@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight, CloudRain, ShieldAlert, AlertTriangle, BatteryWarning } from 'lucide-react';
+import { ArrowRight, CloudRain, ShieldAlert, AlertTriangle, BatteryWarning, CheckCircle2 } from 'lucide-react';
 
 interface DisorderInfo {
   id: string;
@@ -9,151 +9,151 @@ interface DisorderInfo {
   symptoms: string[];
   definition: string;
   tccHelp: string;
-  position: string; // Tailwind classes for positioning
+  color: string;
 }
 
 const disorders: DisorderInfo[] = [
   {
     id: 'depression',
     name: 'Depressão',
-    icon: <CloudRain size={32} className="text-blue-500" />,
-    symptoms: ['Perda de prazer', 'Alterações no sono/apetite', 'Sentimento de culpa', 'Cansaço excessivo'],
-    definition: 'Um transtorno de humor que causa um sentimento persistente de tristeza e perda de interesse.',
-    tccHelp: 'A TCC ajuda a identificar pensamentos negativos automáticos e a reativar comportamentos prazerosos.',
-    position: 'top-10 left-10 md:left-1/4'
+    icon: <CloudRain size={28} />,
+    symptoms: ['Perda de prazer em hobbies', 'Alterações no sono ou apetite', 'Sentimento de culpa excessiva', 'Cansaço físico constante'],
+    definition: 'Um transtorno de humor que causa um sentimento persistente de tristeza e perda de interesse, afetando como você se sente, pensa e lida com atividades diárias.',
+    tccHelp: 'A TCC ajuda a identificar pensamentos negativos automáticos e a reativar comportamentos que trazem prazer e sentido (Ativação Comportamental).',
+    color: 'text-blue-600'
   },
   {
     id: 'anxiety',
     name: 'Ansiedade (TAG)',
-    icon: <AlertTriangle size={32} className="text-yellow-500" />,
-    symptoms: ['Preocupação excessiva', 'Inquietude', 'Tensão muscular', 'Dificuldade de concentração'],
-    definition: 'Preocupação e medo intensos, excessivos e persistentes sobre situações cotidianas.',
-    tccHelp: 'Ensina técnicas de relaxamento e questionamento socrático para lidar com o medo do futuro.',
-    position: 'top-20 right-10 md:right-1/4'
+    icon: <AlertTriangle size={28} />,
+    symptoms: ['Preocupação excessiva e difícil de controlar', 'Inquietude ou sensação de "nervos à flor da pele"', 'Tensão muscular constante', 'Dificuldade de concentração'],
+    definition: 'Preocupação e medo intensos, excessivos e persistentes sobre situações cotidianas. É quando o "estado de alerta" não desliga.',
+    tccHelp: 'Ensina técnicas de relaxamento e questionamento socrático para lidar com o medo do futuro e reduzir a catastrofização.',
+    color: 'text-amber-600'
   },
   {
     id: 'toc',
     name: 'TOC',
-    icon: <ShieldAlert size={32} className="text-purple-500" />,
-    symptoms: ['Pensamentos intrusivos', 'Rituais de repetição', 'Necessidade de controle', 'Dúvida constante'],
-    definition: 'Pensamentos obsessivos que levam a comportamentos compulsivos repetitivos.',
-    tccHelp: 'Utiliza Exposição e Prevenção de Resposta (EPR) para reduzir a força das obsessões.',
-    position: 'bottom-20 left-6 md:left-1/3'
+    icon: <ShieldAlert size={28} />,
+    symptoms: ['Pensamentos intrusivos indesejados', 'Rituais de repetição ou verificação', 'Necessidade extrema de controle', 'Dúvida constante ("será que fechei?")'],
+    definition: 'Caracterizado por pensamentos obsessivos (ideias fixas) que levam a comportamentos compulsivos (rituais) para aliviar a ansiedade momentânea.',
+    tccHelp: 'Utiliza a Exposição e Prevenção de Resposta (EPR) para ajudar o paciente a tolerar a incerteza sem realizar os rituais.',
+    color: 'text-purple-600'
   },
   {
     id: 'burnout',
     name: 'Burnout',
-    icon: <BatteryWarning size={32} className="text-red-500" />,
-    symptoms: ['Esgotamento físico/mental', 'Cinismo com o trabalho', 'Baixa realização pessoal', 'Irritabilidade'],
-    definition: 'Síndrome resultante de um estresse crônico no local de trabalho que não foi administrado com sucesso.',
-    tccHelp: 'Trabalha limites, regulação emocional e reestruturação da relação com o trabalho.',
-    position: 'bottom-32 right-6 md:right-1/3'
+    icon: <BatteryWarning size={28} />,
+    symptoms: ['Esgotamento físico e mental extremo', 'Cinismo ou distanciamento do trabalho', 'Sensação de ineficácia', 'Irritabilidade frequente'],
+    definition: 'Uma síndrome resultante de um estresse crônico no local de trabalho que não foi administrado com sucesso.',
+    tccHelp: 'Trabalha limites, regulação emocional e reestruturação da relação com o trabalho e expectativas pessoais.',
+    color: 'text-rose-600'
   }
 ];
 
 const CommonDisorders: React.FC = () => {
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string>('depression');
+  const activeData = disorders.find(d => d.id === activeId);
 
   return (
-    <section id="disorders" className="py-24 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-[600px] flex flex-col items-center justify-center">
+    <section id="disorders" className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center mb-12 z-10 pointer-events-none">
-          <h2 className="text-sm font-bold text-primary-600 uppercase tracking-widest mb-2">Sintomas Silenciosos</h2>
+        {/* Header Elegante */}
+        <div className="text-center mb-16">
+          <h2 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">Sinais de Alerta</h2>
           <h3 className="text-3xl md:text-4xl font-serif font-bold text-slate-900">
-            O que seu corpo e mente tentam dizer?
+            Sintomas Silenciosos
           </h3>
-          <p className="text-slate-500 mt-4 max-w-xl mx-auto">
-            Clique nos termos abaixo para entender melhor o que você pode estar sentindo.
-          </p>
+          <div className="w-16 h-1 bg-primary-600 mx-auto mt-6 rounded-full"></div>
         </div>
 
-        {/* Scattered Buttons Area */}
-        <div className="relative w-full h-[400px] md:h-[500px]">
-           {disorders.map((d) => (
-             <motion.button
-                key={d.id}
-                onClick={() => setActiveId(d.id)}
-                onMouseEnter={() => setActiveId(d.id)}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className={`absolute ${d.position} bg-slate-50 border border-slate-200 shadow-md px-6 py-3 rounded-full font-bold text-slate-700 hover:bg-primary-50 hover:border-primary-300 hover:text-primary-800 transition-all z-20`}
-             >
-               {d.name}
-             </motion.button>
-           ))}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+          
+          {/* Menu Lateral (Tabs) */}
+          <div className="w-full lg:w-1/3 flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible gap-3 pb-4 lg:pb-0 scrollbar-hide">
+             {disorders.map((d) => (
+               <button
+                  key={d.id}
+                  onClick={() => setActiveId(d.id)}
+                  className={`group flex items-center gap-4 p-4 rounded-xl text-left transition-all duration-300 min-w-[200px] lg:min-w-0 border ${
+                    activeId === d.id 
+                      ? 'bg-primary-50 border-primary-200 shadow-sm' 
+                      : 'bg-white border-transparent hover:bg-slate-50'
+                  }`}
+               >
+                 <div className={`p-2 rounded-lg transition-colors ${activeId === d.id ? 'bg-white text-primary-600' : 'bg-slate-100 text-slate-400 group-hover:text-slate-600'}`}>
+                    {d.icon}
+                 </div>
+                 <div>
+                   <span className={`block font-bold text-lg ${activeId === d.id ? 'text-slate-900' : 'text-slate-500'}`}>
+                     {d.name}
+                   </span>
+                 </div>
+               </button>
+             ))}
+          </div>
 
-           {/* Central Decorative Element */}
-           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-50 rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-pulse pointer-events-none"></div>
-        </div>
+          {/* Área de Conteúdo (Card Elegante) */}
+          <div className="w-full lg:w-2/3">
+            <AnimatePresence mode="wait">
+              {activeData && (
+                <motion.div
+                  key={activeData.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="bg-slate-50 rounded-3xl p-8 md:p-10 border border-slate-100 shadow-xl relative overflow-hidden"
+                >
+                  {/* Decorative Background Blob */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-50 -mr-16 -mt-16 pointer-events-none"></div>
 
-        {/* Popup Overlay */}
-        <AnimatePresence>
-          {activeId && (
-            <div className="absolute inset-0 z-30 flex items-center justify-center p-4 pointer-events-none">
-               {disorders.filter(d => d.id === activeId).map(d => (
-                 <motion.div
-                    key={d.id}
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    className="bg-white rounded-2xl shadow-2xl border border-slate-100 p-8 max-w-lg w-full pointer-events-auto relative"
-                 >
-                    <button 
-                      onClick={() => setActiveId(null)}
-                      className="absolute top-4 right-4 text-slate-400 hover:text-slate-700"
-                    >
-                      <X size={24} />
-                    </button>
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className={`p-2 rounded-lg bg-white shadow-sm ${activeData.color}`}>
+                         {activeData.icon}
+                      </div>
+                      <h4 className="text-3xl font-serif font-bold text-slate-800">{activeData.name}</h4>
+                    </div>
 
-                    <div className="flex items-center gap-4 mb-6">
-                       <div className="p-3 bg-slate-50 rounded-xl">
-                          {d.icon}
+                    <p className="text-lg text-slate-600 leading-relaxed mb-8 italic border-l-4 border-primary-200 pl-4">
+                      "{activeData.definition}"
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                       <div>
+                          <h5 className="font-bold text-xs text-slate-400 uppercase tracking-wider mb-4">Sinais Comuns</h5>
+                          <ul className="space-y-3">
+                            {activeData.symptoms.map((s, idx) => (
+                              <li key={idx} className="flex items-start gap-3 text-slate-700 text-sm">
+                                <CheckCircle2 size={16} className="text-primary-500 mt-0.5 shrink-0" />
+                                {s}
+                              </li>
+                            ))}
+                          </ul>
                        </div>
-                       <h4 className="text-2xl font-serif font-bold text-slate-900">{d.name}</h4>
+                       <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                          <h5 className="font-bold text-xs text-primary-600 uppercase tracking-wider mb-2">Abordagem TCC</h5>
+                          <p className="text-slate-600 text-sm leading-relaxed">
+                            {activeData.tccHelp}
+                          </p>
+                       </div>
                     </div>
 
-                    <div className="space-y-4 mb-8">
-                      <div>
-                        <h5 className="font-bold text-sm text-slate-500 uppercase mb-1">O que é?</h5>
-                        <p className="text-slate-700 leading-relaxed">{d.definition}</p>
-                      </div>
-                      
-                      <div>
-                        <h5 className="font-bold text-sm text-slate-500 uppercase mb-2">Sinais Comuns</h5>
-                        <ul className="grid grid-cols-2 gap-2">
-                          {d.symptoms.map(s => (
-                            <li key={s} className="text-sm text-slate-600 flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 bg-primary-500 rounded-full"></span> {s}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div>
-                        <h5 className="font-bold text-sm text-slate-500 uppercase mb-1">Como a TCC Ajuda?</h5>
-                        <p className="text-slate-700 leading-relaxed font-medium bg-primary-50 p-3 rounded-lg border border-primary-100">
-                          {d.tccHelp}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="border-t border-slate-100 pt-6 text-center">
-                       <p className="text-sm text-slate-500 mb-4 italic">Você se identifica com esses sintomas?</p>
-                       <a 
-                         href="#contact"
-                         className="inline-flex items-center justify-center w-full py-3 bg-primary-700 hover:bg-primary-800 text-white font-bold rounded-xl transition-colors"
-                       >
-                         Agendar Avaliação
-                         <ArrowRight size={18} className="ml-2" />
+                    <div className="flex justify-end pt-4 border-t border-slate-200/60">
+                       <a href="#contact" className="group inline-flex items-center font-bold text-slate-800 hover:text-primary-600 transition-colors">
+                          Agendar conversa sobre {activeData.name}
+                          <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                        </a>
                     </div>
-                 </motion.div>
-               ))}
-            </div>
-          )}
-        </AnimatePresence>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
+        </div>
       </div>
     </section>
   );
