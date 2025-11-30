@@ -1,158 +1,213 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, CloudRain, ShieldAlert, AlertTriangle, BatteryWarning, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CloudRain, ShieldAlert, AlertTriangle, BatteryWarning, Plus, Minus, Check, HelpCircle, Activity } from 'lucide-react';
 
 interface DisorderInfo {
   id: string;
   name: string;
+  tagline: string;
   icon: React.ReactNode;
   symptoms: string[];
   definition: string;
   tccHelp: string;
-  color: string;
+  colorClass: string;
+  bgClass: string;
+  borderClass: string;
 }
 
 const disorders: DisorderInfo[] = [
   {
-    id: 'depression',
-    name: 'Depressão',
-    icon: <CloudRain size={28} />,
-    symptoms: ['Perda de prazer em hobbies', 'Alterações no sono ou apetite', 'Sentimento de culpa excessiva', 'Cansaço físico constante'],
-    definition: 'Um transtorno de humor que causa um sentimento persistente de tristeza e perda de interesse, afetando como você se sente, pensa e lida com atividades diárias.',
-    tccHelp: 'A TCC ajuda a identificar pensamentos negativos automáticos e a reativar comportamentos que trazem prazer e sentido (Ativação Comportamental).',
-    color: 'text-blue-600'
-  },
-  {
     id: 'anxiety',
     name: 'Ansiedade (TAG)',
-    icon: <AlertTriangle size={28} />,
-    symptoms: ['Preocupação excessiva e difícil de controlar', 'Inquietude ou sensação de "nervos à flor da pele"', 'Tensão muscular constante', 'Dificuldade de concentração'],
-    definition: 'Preocupação e medo intensos, excessivos e persistentes sobre situações cotidianas. É quando o "estado de alerta" não desliga.',
-    tccHelp: 'Ensina técnicas de relaxamento e questionamento socrático para lidar com o medo do futuro e reduzir a catastrofização.',
-    color: 'text-amber-600'
+    tagline: 'A mente que nunca desliga.',
+    icon: <AlertTriangle size={24} />,
+    symptoms: ['Sensação constante de que algo ruim vai acontecer', 'Tensão muscular e dificuldade para relaxar', 'Pensamentos acelerados, principalmente à noite', 'Irritabilidade sem motivo aparente'],
+    definition: 'O Transtorno de Ansiedade Generalizada (TAG) é como um alarme de incêndio que toca sem haver fogo. Seu corpo e mente vivem em estado de alerta constante, esperando perigos que muitas vezes não existem.',
+    tccHelp: 'A TCC ajuda a identificar os "alarmes falsos". Aprendemos técnicas de relaxamento e questionamos a probabilidade real dos seus medos se concretizarem, devolvendo o controle.',
+    colorClass: 'text-amber-600',
+    bgClass: 'bg-amber-50',
+    borderClass: 'border-amber-100'
   },
   {
-    id: 'toc',
-    name: 'TOC',
-    icon: <ShieldAlert size={28} />,
-    symptoms: ['Pensamentos intrusivos indesejados', 'Rituais de repetição ou verificação', 'Necessidade extrema de controle', 'Dúvida constante ("será que fechei?")'],
-    definition: 'Caracterizado por pensamentos obsessivos (ideias fixas) que levam a comportamentos compulsivos (rituais) para aliviar a ansiedade momentânea.',
-    tccHelp: 'Utiliza a Exposição e Prevenção de Resposta (EPR) para ajudar o paciente a tolerar a incerteza sem realizar os rituais.',
-    color: 'text-purple-600'
+    id: 'depression',
+    name: 'Depressão',
+    tagline: 'Quando o mundo perde a cor.',
+    icon: <CloudRain size={24} />,
+    symptoms: ['Perda de interesse em coisas que você gostava', 'Cansaço físico mesmo tendo dormido muito', 'Sentimento de culpa ou inutilidade', 'Alterações bruscas de apetite'],
+    definition: 'A depressão não é fraqueza ou "falta de Deus". É uma condição clínica que afeta a química cerebral e a forma como você processa emoções, criando um filtro cinza sobre a realidade.',
+    tccHelp: 'Utilizamos a Ativação Comportamental para quebrar o ciclo da inércia ("só faço quando tiver vontade") e reestruturamos pensamentos automáticos de autocrítica.',
+    colorClass: 'text-blue-600',
+    bgClass: 'bg-blue-50',
+    borderClass: 'border-blue-100'
   },
   {
     id: 'burnout',
     name: 'Burnout',
-    icon: <BatteryWarning size={28} />,
-    symptoms: ['Esgotamento físico e mental extremo', 'Cinismo ou distanciamento do trabalho', 'Sensação de ineficácia', 'Irritabilidade frequente'],
-    definition: 'Uma síndrome resultante de um estresse crônico no local de trabalho que não foi administrado com sucesso.',
-    tccHelp: 'Trabalha limites, regulação emocional e reestruturação da relação com o trabalho e expectativas pessoais.',
-    color: 'text-rose-600'
+    tagline: 'O esgotamento pelo excesso.',
+    icon: <BatteryWarning size={24} />,
+    symptoms: ['Exaustão emocional (sentir-se drenado)', 'Cinismo ou distanciamento do trabalho', 'Sensação de que nada do que faz é suficiente', 'Dores de cabeça ou problemas gastrointestinais'],
+    definition: 'Síndrome resultante de um estresse crônico no trabalho que não foi gerenciado. Não é apenas cansaço; é um colapso do seu sistema de enfrentamento.',
+    tccHelp: 'Focamos em estabelecer limites claros, resgatar sua identidade fora do trabalho e desenvolver estratégias de regulação emocional para lidar com a pressão.',
+    colorClass: 'text-rose-600',
+    bgClass: 'bg-rose-50',
+    borderClass: 'border-rose-100'
+  },
+  {
+    id: 'toc',
+    name: 'TOC',
+    tagline: 'O ciclo da dúvida.',
+    icon: <ShieldAlert size={24} />,
+    symptoms: ['Pensamentos intrusivos que geram medo', 'Necessidade incontrolável de verificar coisas', 'Rituais mentais para "anular" pensamentos ruins', 'Busca constante por certeza absoluta'],
+    definition: 'O Transtorno Obsessivo-Compulsivo prende a pessoa em um ciclo: uma obsessão (medo) gera ansiedade, e a compulsão (ritual) alivia momentaneamente, mas reforça o medo.',
+    tccHelp: 'A Exposição com Prevenção de Resposta (EPR) é o padrão-ouro. Ensinamos você a tolerar a incerteza e o desconforto sem realizar o ritual, quebrando o ciclo.',
+    colorClass: 'text-purple-600',
+    bgClass: 'bg-purple-50',
+    borderClass: 'border-purple-100'
   }
 ];
 
 const CommonDisorders: React.FC = () => {
-  const [activeId, setActiveId] = useState<string>('depression');
-  const activeData = disorders.find(d => d.id === activeId);
+  const [expandedId, setExpandedId] = useState<string | null>('anxiety');
+
+  const toggleExpand = (id: string) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
 
   return (
-    <section id="disorders" className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="disorders" className="py-24 bg-white relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
         
-        {/* Header Elegante */}
-        <div className="text-center mb-16">
-          <h2 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">Sinais de Alerta</h2>
-          <h3 className="text-3xl md:text-4xl font-serif font-bold text-slate-900">
-            Sintomas Silenciosos
-          </h3>
-          <div className="w-16 h-1 bg-primary-600 mx-auto mt-6 rounded-full"></div>
+        {/* Header */}
+        <div className="text-center mb-16 space-y-4">
+           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider">
+             <HelpCircle size={14} />
+             Autoanálise
+           </div>
+           <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900">
+             O que seu corpo e mente estão dizendo?
+           </h2>
+           <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+             Muitas vezes, não sabemos nomear o que sentimos. Identifique os sintomas abaixo para entender melhor o seu momento.
+           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
-          
-          {/* Menu Lateral (Tabs) */}
-          <div className="w-full lg:w-1/3 flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible gap-3 pb-4 lg:pb-0 scrollbar-hide">
-             {disorders.map((d) => (
-               <button
-                  key={d.id}
-                  onClick={() => setActiveId(d.id)}
-                  className={`group flex items-center gap-4 p-4 rounded-xl text-left transition-all duration-300 min-w-[200px] lg:min-w-0 border ${
-                    activeId === d.id 
-                      ? 'bg-primary-50 border-primary-200 shadow-sm' 
-                      : 'bg-white border-transparent hover:bg-slate-50'
-                  }`}
-               >
-                 <div className={`p-2 rounded-lg transition-colors ${activeId === d.id ? 'bg-white text-primary-600' : 'bg-slate-100 text-slate-400 group-hover:text-slate-600'}`}>
-                    {d.icon}
-                 </div>
-                 <div>
-                   <span className={`block font-bold text-lg ${activeId === d.id ? 'text-slate-900' : 'text-slate-500'}`}>
-                     {d.name}
-                   </span>
-                 </div>
-               </button>
-             ))}
-          </div>
+        {/* Accordion Cards */}
+        <div className="grid grid-cols-1 gap-6">
+          {disorders.map((item) => {
+            const isExpanded = expandedId === item.id;
 
-          {/* Área de Conteúdo (Card Elegante) */}
-          <div className="w-full lg:w-2/3">
-            <AnimatePresence mode="wait">
-              {activeData && (
-                <motion.div
-                  key={activeData.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="bg-slate-50 rounded-3xl p-8 md:p-10 border border-slate-100 shadow-xl relative overflow-hidden"
+            return (
+              <motion.div 
+                key={item.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  isExpanded 
+                    ? `bg-white shadow-xl ring-1 ring-slate-200 border-transparent` 
+                    : 'bg-white border-slate-200 hover:border-slate-300'
+                }`}
+              >
+                {/* Trigger Button */}
+                <button
+                  onClick={() => toggleExpand(item.id)}
+                  className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group"
                 >
-                  {/* Decorative Background Blob */}
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-50 -mr-16 -mt-16 pointer-events-none"></div>
-
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className={`p-2 rounded-lg bg-white shadow-sm ${activeData.color}`}>
-                         {activeData.icon}
-                      </div>
-                      <h4 className="text-3xl font-serif font-bold text-slate-800">{activeData.name}</h4>
+                  <div className="flex items-center gap-6">
+                    <div className={`
+                      w-14 h-14 rounded-2xl flex items-center justify-center transition-colors duration-300
+                      ${isExpanded ? `${item.bgClass} ${item.colorClass}` : 'bg-slate-50 text-slate-400 group-hover:bg-slate-100'}
+                    `}>
+                      {item.icon}
                     </div>
-
-                    <p className="text-lg text-slate-600 leading-relaxed mb-8 italic border-l-4 border-primary-200 pl-4">
-                      "{activeData.definition}"
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                       <div>
-                          <h5 className="font-bold text-xs text-slate-400 uppercase tracking-wider mb-4">Sinais Comuns</h5>
-                          <ul className="space-y-3">
-                            {activeData.symptoms.map((s, idx) => (
-                              <li key={idx} className="flex items-start gap-3 text-slate-700 text-sm">
-                                <CheckCircle2 size={16} className="text-primary-500 mt-0.5 shrink-0" />
-                                {s}
-                              </li>
-                            ))}
-                          </ul>
-                       </div>
-                       <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                          <h5 className="font-bold text-xs text-primary-600 uppercase tracking-wider mb-2">Abordagem TCC</h5>
-                          <p className="text-slate-600 text-sm leading-relaxed">
-                            {activeData.tccHelp}
-                          </p>
-                       </div>
-                    </div>
-
-                    <div className="flex justify-end pt-4 border-t border-slate-200/60">
-                       <a href="#contact" className="group inline-flex items-center font-bold text-slate-800 hover:text-primary-600 transition-colors">
-                          Agendar conversa sobre {activeData.name}
-                          <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                       </a>
+                    <div>
+                      <h3 className={`text-xl font-bold transition-colors ${isExpanded ? 'text-slate-900' : 'text-slate-700'}`}>
+                        {item.name}
+                      </h3>
+                      <p className="text-slate-500 text-sm mt-1 font-medium hidden md:block">
+                        {item.tagline}
+                      </p>
                     </div>
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                  
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                    isExpanded 
+                      ? 'bg-slate-900 text-white border-slate-900 rotate-180' 
+                      : 'bg-white border-slate-200 text-slate-400 group-hover:border-slate-300'
+                  }`}>
+                    {isExpanded ? <Minus size={20} /> : <Plus size={20} />}
+                  </div>
+                </button>
 
+                {/* Expanded Content */}
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="border-t border-slate-100">
+                        
+                        {/* 1. Sintomas (Hero Section do Card) */}
+                        <div className={`${item.bgClass} p-8 md:p-10`}>
+                          <h4 className={`text-sm font-bold uppercase tracking-widest mb-6 flex items-center gap-2 ${item.colorClass}`}>
+                            <Activity size={18} /> Identifique os Sinais
+                          </h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {item.symptoms.map((symptom, idx) => (
+                              <div key={idx} className="flex items-start gap-3 bg-white/60 p-3 rounded-lg">
+                                <div className={`mt-1 p-1 rounded-full bg-white ${item.colorClass}`}>
+                                  <Check size={12} strokeWidth={4} />
+                                </div>
+                                <span className="text-slate-800 font-medium text-sm leading-relaxed">
+                                  {symptom}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* 2. Explicação e Solução */}
+                        <div className="p-8 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-12 bg-white">
+                          
+                          {/* O que é */}
+                          <div>
+                             <h4 className="text-lg font-serif font-bold text-slate-900 mb-3">
+                               Entendendo o quadro
+                             </h4>
+                             <p className="text-slate-600 leading-relaxed text-sm">
+                               {item.definition}
+                             </p>
+                          </div>
+
+                          {/* Solução TCC */}
+                          <div className="relative pl-0 md:pl-8 md:border-l border-slate-100">
+                             <h4 className="text-lg font-serif font-bold text-slate-900 mb-3">
+                               Como a Terapia ajuda?
+                             </h4>
+                             <p className="text-slate-600 leading-relaxed text-sm mb-6">
+                               {item.tccHelp}
+                             </p>
+                             
+                             <a 
+                               href="#contact" 
+                               className={`inline-flex items-center text-sm font-bold ${item.colorClass} hover:opacity-80 transition-opacity`}
+                             >
+                               Agendar conversa sobre isso <ArrowRight size={16} className="ml-2" />
+                             </a>
+                          </div>
+
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

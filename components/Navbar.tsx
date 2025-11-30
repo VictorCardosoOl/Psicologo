@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, BookOpen, MessageCircle, ChevronDown, Download, BrainCircuit } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 interface NavbarProps {
   currentView: 'home' | 'article';
@@ -27,7 +27,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigateHome }) => {
     "Manual: Primeiros Passos na TCC"
   ];
 
-  const menuVariants = {
+  const menuVariants: Variants = {
     closed: {
       opacity: 0,
       x: "100%",
@@ -50,7 +50,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigateHome }) => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     closed: { opacity: 0, y: 20 },
     open: { opacity: 1, y: 0 }
   };
