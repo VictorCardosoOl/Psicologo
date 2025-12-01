@@ -14,12 +14,12 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="order-2 lg:order-1 space-y-8"
           >
-            <div className="inline-block px-4 py-1.5 rounded-full bg-primary-50 border border-primary-100 shadow-sm">
-              <span className="text-primary-800 font-bold text-xs tracking-wider uppercase">Psicologia Baseada em Evidências</span>
+            <div className="inline-block px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
+              <span className="text-primary-700 font-bold text-xs tracking-wider uppercase">Psicologia Baseada em Evidências</span>
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight">
-              Autoconhecimento e mudança prática para sua <span className="text-primary-700 italic">vida</span>.
+              Autoconhecimento e mudança prática para sua <span className="text-primary-600 italic">vida</span>.
             </h1>
             
             <p className="text-lg text-slate-600 leading-relaxed max-w-lg">
@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
                 href="#methodology"
                 className="inline-flex items-center justify-center px-8 py-4 border border-slate-300 text-slate-700 text-base font-bold rounded-xl hover:bg-white hover:border-primary-300 transition-all"
               >
-                Como funciona a TCC?
+                Como funciona a terapia?
               </a>
             </div>
 

@@ -1,230 +1,195 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, CloudRain, ShieldAlert, AlertTriangle, BatteryWarning, Plus, Minus, Check, HelpCircle, Activity } from 'lucide-react';
+import { ArrowRight, CloudRain, AlertTriangle, BatteryWarning, Activity, BrainCircuit, Heart, MessageCircle, ChevronRight, CheckCircle2 } from 'lucide-react';
 
-interface DisorderInfo {
+interface SymptomScenario {
   id: string;
-  name: string;
-  tagline: string;
+  triggerPhrase: string;
+  disorderName: string;
+  description: string;
+  tccApproach: string;
   icon: React.ReactNode;
-  symptoms: string[];
-  definition: string;
-  tccHelp: string;
   colorClass: string;
   bgClass: string;
-  borderClass: string;
-  gradientClass: string;
-  shadowColor: string;
+  borderColor: string;
 }
 
-const disorders: DisorderInfo[] = [
+const scenarios: SymptomScenario[] = [
   {
     id: 'anxiety',
-    name: 'Ansiedade (TAG)',
-    tagline: 'A mente que nunca desliga.',
-    icon: <AlertTriangle size={24} />,
-    symptoms: ['Sensação constante de perigo', 'Tensão muscular e rigidez', 'Pensamentos acelerados à noite', 'Irritabilidade frequente'],
-    definition: 'O Transtorno de Ansiedade Generalizada (TAG) mantém seu corpo e mente em estado de alerta constante, esperando perigos que muitas vezes não existem.',
-    tccHelp: 'Ajudamos a identificar "alarmes falsos", ensinando técnicas de relaxamento e questionamento socrático para retomar o controle.',
-    colorClass: 'text-amber-700',
-    bgClass: 'bg-amber-100',
-    borderClass: 'border-amber-200',
-    gradientClass: 'bg-gradient-to-br from-white via-white to-amber-50',
-    shadowColor: 'shadow-amber-900/5'
+    triggerPhrase: "Minha cabeça não para e estou sempre esperando o pior.",
+    disorderName: "Ansiedade Generalizada (TAG)",
+    description: "Você sente que está sempre em estado de alerta. A preocupação é excessiva, difícil de controlar e vem acompanhada de tensão muscular, irritabilidade ou insônia.",
+    tccApproach: "Na TCC, identificamos os gatilhos da preocupação e ensinamos técnicas concretas para acalmar a mente e retomar o controle.",
+    icon: <BrainCircuit size={32} />,
+    colorClass: "text-teal-600",
+    bgClass: "bg-teal-50",
+    borderColor: "border-teal-200"
+  },
+  {
+    id: 'panic',
+    triggerPhrase: "Sinto o coração disparar e um medo repentino de morrer ou perder o controle.",
+    disorderName: "Síndrome do Pânico",
+    description: "Ataques súbitos de medo intenso que geram sintomas físicos reais (taquicardia, falta de ar), mesmo sem perigo aparente.",
+    tccApproach: "Você aprenderá que as sensações físicas, embora assustadoras, não são perigosas, reduzindo o medo das próprias crises.",
+    icon: <Activity size={32} />,
+    colorClass: "text-indigo-600",
+    bgClass: "bg-indigo-50",
+    borderColor: "border-indigo-200"
   },
   {
     id: 'depression',
-    name: 'Depressão',
-    tagline: 'Quando o mundo perde a cor.',
-    icon: <CloudRain size={24} />,
-    symptoms: ['Perda de interesse (anedonia)', 'Cansaço físico persistente', 'Sentimento de culpa ou vazio', 'Alterações de sono e apetite'],
-    definition: 'A depressão afeta a química cerebral e a forma como processamos emoções, criando um filtro cinza sobre a realidade e drenando a vitalidade.',
-    tccHelp: 'Usamos a Ativação Comportamental para quebrar o ciclo da inércia e reestruturamos pensamentos automáticos de autocrítica.',
-    colorClass: 'text-sky-700',
-    bgClass: 'bg-sky-100',
-    borderClass: 'border-sky-200',
-    gradientClass: 'bg-gradient-to-br from-white via-white to-sky-50',
-    shadowColor: 'shadow-sky-900/5'
+    triggerPhrase: "Sinto um vazio constante, desânimo e nada parece ter graça.",
+    disorderName: "Depressão",
+    description: "Não é apenas tristeza passageira. É uma perda de vitalidade que afeta o sono, o apetite e a vontade de realizar tarefas simples do dia a dia.",
+    tccApproach: "Utilizamos a Ativação Comportamental para que você volte a sentir prazer nas pequenas coisas, passo a passo.",
+    icon: <CloudRain size={32} />,
+    colorClass: "text-slate-600",
+    bgClass: "bg-slate-100",
+    borderColor: "border-slate-200"
   },
   {
     id: 'burnout',
-    name: 'Burnout',
-    tagline: 'O esgotamento pelo excesso.',
-    icon: <BatteryWarning size={24} />,
-    symptoms: ['Exaustão emocional extrema', 'Cinismo com o trabalho', 'Sensação de incompetência', 'Dores físicas sem causa aparente'],
-    definition: 'Síndrome resultante de estresse crônico não gerenciado. É um colapso do sistema de enfrentamento, não apenas cansaço comum.',
-    tccHelp: 'Focamos em estabelecer limites claros, resgatar sua identidade fora do trabalho e desenvolver regulação emocional.',
-    colorClass: 'text-rose-700',
-    bgClass: 'bg-rose-100',
-    borderClass: 'border-rose-200',
-    gradientClass: 'bg-gradient-to-br from-white via-white to-rose-50',
-    shadowColor: 'shadow-rose-900/5'
-  },
-  {
-    id: 'toc',
-    name: 'TOC',
-    tagline: 'O ciclo da dúvida.',
-    icon: <ShieldAlert size={24} />,
-    symptoms: ['Pensamentos intrusivos', 'Verificações constantes', 'Rituais mentais de "anulação"', 'Necessidade de certeza absoluta'],
-    definition: 'Um ciclo onde uma obsessão (medo) gera ansiedade, e a compulsão (ritual) alivia momentaneamente, mas reforça o medo a longo prazo.',
-    tccHelp: 'A Exposição com Prevenção de Resposta (EPR) ensina a tolerar a incerteza sem realizar rituais, quebrando o ciclo do medo.',
-    colorClass: 'text-violet-700',
-    bgClass: 'bg-violet-100',
-    borderClass: 'border-violet-200',
-    gradientClass: 'bg-gradient-to-br from-white via-white to-violet-50',
-    shadowColor: 'shadow-violet-900/5'
+    triggerPhrase: "Estou exausto e sinto que não dou conta das exigências do trabalho.",
+    disorderName: "Burnout",
+    description: "Esgotamento físico e mental ligado à vida profissional. Você sente que, por mais que descanse, a energia não volta e o cinismo aumenta.",
+    tccApproach: "Trabalhamos limites saudáveis, regulação do estresse e a reconstrução da sua identidade para além do trabalho.",
+    icon: <BatteryWarning size={32} />,
+    colorClass: "text-rose-600",
+    bgClass: "bg-rose-50",
+    borderColor: "border-rose-200"
   }
 ];
 
 const CommonDisorders: React.FC = () => {
-  const [expandedId, setExpandedId] = useState<string | null>('anxiety');
+  // Start null so nothing is expanded by default
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  const toggleExpand = (id: string) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
+  const activeScenario = scenarios.find(s => s.id === selectedId);
 
   return (
-    <section id="disorders" className="py-24 bg-white relative overflow-hidden">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+    <section id="sinais" className="py-24 bg-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header */}
-        <div className="text-center mb-16 space-y-4">
-           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-wider shadow-sm">
-             <HelpCircle size={14} />
+        <div className="mb-16 max-w-3xl">
+           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider mb-4">
+             <AlertTriangle size={14} />
              Sinais de Alerta
            </div>
-           <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900">
-             O que você tem sentido?
+           <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6">
+             Como você tem se sentido?
            </h2>
-           <p className="text-slate-500 text-lg max-w-xl mx-auto font-light leading-relaxed">
-             Identificar os sintomas é o primeiro passo para o tratamento. Selecione um card abaixo para entender melhor.
+           <p className="text-slate-600 text-lg leading-relaxed">
+             Muitas vezes, sabemos o que sentimos, mas não sabemos o nome disso. 
+             <br/><strong>Clique na frase que mais se conecta com seu momento atual</strong> para entender o que pode estar acontecendo.
            </p>
         </div>
 
-        {/* Cards Stack */}
-        <div className="flex flex-col gap-4">
-          {disorders.map((item) => {
-            const isExpanded = expandedId === item.id;
-
-            return (
-              <motion.div 
-                key={item.id}
-                layout
-                initial={false}
-                animate={{ 
-                  scale: isExpanded ? 1.02 : 1,
-                  borderColor: isExpanded ? 'rgba(0,0,0,0)' : 'transparent' 
-                }}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          
+          {/* Left Column: Symptom List */}
+          <div className="lg:col-span-5 flex flex-col gap-4">
+            {scenarios.map((scenario) => (
+              <button
+                key={scenario.id}
+                onClick={() => setSelectedId(scenario.id)}
                 className={`
-                  relative rounded-2xl border transition-all duration-500 overflow-hidden
-                  ${item.gradientClass}
-                  ${isExpanded ? `shadow-2xl ${item.shadowColor} ring-1 ring-black/5 z-10` : 'border-slate-100 shadow-sm hover:shadow-md hover:border-slate-200'}
+                  group relative text-left p-6 rounded-xl transition-all duration-300 border flex items-center justify-between
+                  ${selectedId === scenario.id 
+                    ? 'bg-primary-600 text-white border-primary-600 shadow-lg translate-x-2' 
+                    : 'bg-white text-slate-600 border-slate-100 hover:border-primary-300 hover:shadow-md hover:bg-slate-50'
+                  }
                 `}
               >
-                {/* Trigger Area */}
-                <button
-                  onClick={() => toggleExpand(item.id)}
-                  className="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none group relative z-10"
-                >
-                  <div className="flex items-center gap-6">
-                    {/* Icon Box */}
-                    <div className={`
-                      w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-inner
-                      ${item.bgClass} ${item.colorClass}
-                      ${isExpanded ? 'scale-110' : 'scale-100 group-hover:scale-105'}
-                    `}>
-                      {item.icon}
+                <div className="flex items-start gap-4 pr-4">
+                    <div className={`mt-1 w-4 h-4 rounded-full border-2 shrink-0 flex items-center justify-center ${selectedId === scenario.id ? 'border-white bg-white/20' : 'border-slate-300'}`}>
+                        {selectedId === scenario.id && <div className="w-2 h-2 rounded-full bg-white" />}
                     </div>
-                    
-                    {/* Title & Tagline */}
+                    <span className={`font-medium leading-snug text-base md:text-lg ${selectedId === scenario.id ? 'text-white' : 'text-slate-700'}`}>
+                    "{scenario.triggerPhrase}"
+                    </span>
+                </div>
+                <ChevronRight size={20} className={`shrink-0 transition-opacity ${selectedId === scenario.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-50'}`} />
+              </button>
+            ))}
+          </div>
+
+          {/* Right Column: Context Display */}
+          <div className="lg:col-span-7 relative min-h-[500px]">
+            <AnimatePresence mode="wait">
+              {activeScenario ? (
+                <motion.div
+                  key={activeScenario.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className={`relative rounded-3xl p-8 md:p-12 shadow-xl border ${activeScenario.borderColor} ${activeScenario.bgClass} h-full flex flex-col`}
+                >
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white shadow-sm ${activeScenario.colorClass}`}>
+                        {activeScenario.icon}
+                    </div>
                     <div>
-                      <h3 className={`text-xl md:text-2xl font-serif font-bold transition-colors duration-300 ${isExpanded ? 'text-slate-900' : 'text-slate-800 group-hover:text-slate-900'}`}>
-                        {item.name}
-                      </h3>
-                      <p className={`text-sm font-medium mt-1 transition-colors duration-300 ${isExpanded ? item.colorClass : 'text-slate-500'}`}>
-                        {item.tagline}
-                      </p>
+                        <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1 block">Possível Quadro</span>
+                        <h3 className="text-2xl md:text-3xl font-serif font-bold text-slate-900 leading-none">
+                            {activeScenario.disorderName}
+                        </h3>
                     </div>
                   </div>
                   
-                  {/* Expand Icon */}
-                  <div className={`
-                    w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-500
-                    ${isExpanded 
-                      ? `bg-slate-900 text-white border-slate-900 rotate-180` 
-                      : 'bg-white/50 border-slate-200 text-slate-400 group-hover:bg-white group-hover:shadow-sm'
-                    }
-                  `}>
-                    {isExpanded ? <Minus size={20} /> : <Plus size={20} />}
+                  <div className="space-y-6">
+                    <div>
+                        <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            O que é isso?
+                        </h4>
+                        <p className="text-slate-700 text-lg leading-relaxed">
+                            {activeScenario.description}
+                        </p>
+                    </div>
+
+                    <div className="bg-white/60 rounded-2xl p-6 border border-white/60">
+                        <h4 className="text-sm font-bold text-primary-700 uppercase tracking-wider mb-3 flex items-center gap-2">
+                        <Heart size={16} />
+                        Como a terapia ajuda
+                        </h4>
+                        <p className="text-slate-800 font-medium leading-relaxed">
+                        {activeScenario.tccApproach}
+                        </p>
+                    </div>
                   </div>
-                </button>
 
-                {/* Expanded Content */}
-                <AnimatePresence>
-                  {isExpanded && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                  <div className="mt-8 pt-8 border-t border-slate-200/50">
+                    <a 
+                        href="https://wa.me/5511999998888" 
+                        target="_blank"
+                        className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-slate-800 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1"
                     >
-                      <div className="px-6 pb-8 md:px-8 md:pb-10 pt-2 border-t border-slate-100/50">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mt-4">
-                          
-                          {/* Left Column: Symptoms Checklist */}
-                          <div className="bg-white/60 rounded-2xl p-6 border border-white/50 shadow-sm backdrop-blur-sm">
-                            <h4 className={`text-xs font-bold uppercase tracking-widest mb-4 flex items-center gap-2 ${item.colorClass}`}>
-                              <Activity size={16} /> Checklist de Sintomas
-                            </h4>
-                            <ul className="space-y-3">
-                              {item.symptoms.map((symptom, idx) => (
-                                <li key={idx} className="flex items-start gap-3 text-slate-700 text-sm">
-                                  <div className={`mt-0.5 p-0.5 rounded-full ${item.bgClass} ${item.colorClass}`}>
-                                    <Check size={10} strokeWidth={4} />
-                                  </div>
-                                  <span className="leading-tight">{symptom}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                        Agendar avaliação sobre isso
+                        <ArrowRight size={18} />
+                    </a>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="empty"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="h-full flex flex-col items-center justify-center text-center p-12 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50"
+                >
+                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center text-slate-300 mb-6 shadow-sm">
+                    <CheckCircle2 size={40} className="text-slate-200" />
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-slate-400 mb-2">Selecione um sintoma ao lado</h3>
+                  <p className="text-slate-400 max-w-xs mx-auto">
+                    Ao clicar em uma das frases à esquerda, explicarei aqui o contexto clínico e como posso te ajudar.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
-                          {/* Right Column: Explanation & CTA */}
-                          <div className="flex flex-col justify-between space-y-6">
-                            <div>
-                               <h4 className="font-serif font-bold text-slate-900 text-lg mb-3">
-                                 O que isso significa?
-                               </h4>
-                               <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                                 {item.definition}
-                               </p>
-                               <div className={`p-4 rounded-xl border-l-4 ${item.borderClass} bg-white/50 italic text-slate-600 text-sm`}>
-                                  <span className="font-bold block text-xs uppercase text-slate-400 mb-1">Como a TCC atua:</span>
-                                  {item.tccHelp}
-                               </div>
-                            </div>
-
-                            <a 
-                              href="#contact" 
-                              className={`
-                                group inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 
-                                rounded-xl font-bold text-sm text-white shadow-lg shadow-slate-200 
-                                transition-all hover:translate-y-[-2px] hover:shadow-xl
-                                bg-slate-900 hover:bg-slate-800
-                              `}
-                            >
-                              Agendar Avaliação
-                              <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                            </a>
-                          </div>
-
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
         </div>
       </div>
     </section>

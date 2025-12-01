@@ -1,122 +1,119 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, HelpCircle, RefreshCw, CheckCircle2 } from 'lucide-react';
-
-const steps = [
-  {
-    id: 'identificar',
-    title: 'Identificar',
-    description: 'Mapeamos os pensamentos automáticos e crenças que geram sofrimento.',
-    fullText: 'Na primeira etapa, trabalhamos como detetives da sua própria mente. Observamos situações do dia a dia para entender o que dispara sua ansiedade ou tristeza.',
-    icon: <Search size={24} />,
-    side: 'left'
-  },
-  {
-    id: 'questionar',
-    title: 'Questionar',
-    description: 'Colocamos à prova a validade desses pensamentos. São fatos ou interpretações?',
-    fullText: 'Nem tudo que pensamos é verdade. Aqui, usamos o "Questionamento Socrático" para avaliar se seus medos são proporcionais à realidade.',
-    icon: <HelpCircle size={24} />,
-    side: 'right'
-  },
-  {
-    id: 'transformar',
-    title: 'Transformar',
-    description: 'Criamos novos comportamentos e formas de pensar mais funcionais e saudáveis.',
-    fullText: 'A mudança acontece na prática. Desenvolvemos estratégias de enfrentamento para que você retome o controle da sua vida.',
-    icon: <RefreshCw size={24} />,
-    side: 'left'
-  }
-];
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Search, HelpCircle, RefreshCw, Brain, Sparkles } from 'lucide-react';
 
 const Methodology: React.FC = () => {
-  const [activeStep, setActiveStep] = useState<string | null>(null);
-
   return (
-    <section id="methodology" className="py-24 bg-slate-50">
+    <section id="methodology" className="py-24 bg-slate-50 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* Intro Section: Psychotherapy & Mental Health */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-32 items-start">
+          
+          {/* Left: How it works */}
+          <div className="space-y-8">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900">
+              Como funciona a psicoterapia?
+            </h2>
+            <div className="prose prose-lg prose-slate text-slate-600 leading-relaxed space-y-6">
+              <p>
+                A psicoterapia é um espaço seguro e confidencial para cuidar da sua saúde emocional. Durante os atendimentos, você é convidado(a) a falar sobre suas experiências, sentimentos, pensamentos e comportamentos, no seu tempo e do seu jeito.
+              </p>
+              <p>
+                Com base em uma abordagem acolhedora e científica, como a <strong>Terapia Cognitivo-Comportamental (TCC)</strong>, vamos construindo juntos um caminho de autoconhecimento, enfrentamento de dificuldades e desenvolvimento de novas formas de lidar com a vida.
+              </p>
+              <p>
+                Cada sessão tem cerca de 50 minutos, e a frequência costuma ser semanal. O processo é único, respeitando sua história, seus valores e suas necessidades.
+              </p>
+            </div>
+          </div>
+
+          {/* Right: Importance */}
+          <div className="bg-white p-8 lg:p-10 rounded-3xl shadow-sm border border-slate-100 relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-8 opacity-5 text-primary-900">
+                 <Sparkles size={140} />
+             </div>
+             
+            <h2 className="text-3xl font-serif font-bold text-slate-900 mb-6">
+              A importância de cuidar da saúde mental
+            </h2>
+            <div className="prose prose-slate text-slate-600 leading-relaxed space-y-6 relative z-10">
+              <p>
+                Cuidar da saúde mental é tão essencial quanto cuidar da saúde física. Vivemos em um mundo acelerado, com muitas exigências externas e internas — e, nesse contexto, é natural que, em algum momento, nos sintamos sobrecarregados, tristes, ansiosos ou até mesmo desconectados de nós mesmos.
+              </p>
+              <p>
+                A saúde mental diz respeito à forma como pensamos, sentimos e agimos diante da vida. Ela influencia nossos relacionamentos, decisões, rotina, autoconceito e bem-estar. Quando negligenciada, pode impactar silenciosamente diversas áreas da nossa vida, desde o sono e a produtividade até a autoestima e os vínculos afetivos.
+              </p>
+              <p>
+                Durante o processo terapêutico, com base em métodos cientificamente validados, você aprende a identificar padrões de pensamento, emoções e comportamentos que podem estar te limitando, e passa a construir formas mais saudáveis e conscientes de viver.
+              </p>
+              <p>
+                A psicoterapia também pode ser um caminho de autoconhecimento: um convite para se reconectar com a própria história, entender suas necessidades emocionais, fortalecer sua autonomia e desenvolver um olhar mais compassivo sobre si mesmo(a).
+              </p>
+              <p>
+                Cada pessoa carrega sua própria bagagem, e não existe um motivo "certo" para procurar terapia. Às vezes, é por causa de uma dor recente. Outras vezes, é um incômodo que vem de longe. E há quem venha apenas por vontade de se conhecer melhor. Todas essas razões são válidas.
+              </p>
+              <div className="pt-4 border-t border-slate-100 mt-4">
+                <p className="text-slate-900 font-bold italic">
+                  Ao escolher cuidar da sua saúde mental, você está investindo em qualidade de vida, equilíbrio e crescimento emocional. E não precisa fazer isso sozinho(a) — a psicoterapia está aqui para caminhar com você.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Divider */}
+        <div className="w-full h-px bg-slate-200 mb-20"></div>
+
+        {/* TCC Pillars Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-sm font-bold text-primary-600 uppercase tracking-widest mb-2">Metodologia TCC</h2>
-          <h3 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-4">
-            Como funciona o tratamento?
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 text-primary-800 text-xs font-bold uppercase tracking-wide mb-4">
+             <Brain size={14} /> Metodologia TCC
+          </div>
+          <h3 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6">
+            Os 3 Pilares do Processo
           </h3>
-          <p className="text-slate-600 leading-relaxed">
-            A Terapia Cognitivo-Comportamental é estruturada, objetiva e colaborativa. 
-            Você não é apenas um ouvinte passivo; é o protagonista da sua mudança.
+          <p className="text-slate-600 text-lg">
+            A Terapia Cognitivo-Comportamental é prática e colaborativa. Trabalhamos juntos nestas três etapas para transformar sua realidade:
           </p>
         </div>
 
-        {/* Timeline Visual */}
-        <div className="relative max-w-4xl mx-auto mb-20">
-           {/* Center Line */}
-           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-slate-200 transform md:-translate-x-1/2"></div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+          
+          {/* Card 1 */}
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center flex flex-col items-center h-full hover:shadow-lg transition-shadow duration-300">
+            <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-6">
+              <Search size={28} />
+            </div>
+            <h4 className="text-xl font-bold text-slate-900 mb-4">1. Identificar</h4>
+            <p className="text-slate-600 leading-relaxed text-sm">
+              Mapeamos os pensamentos automáticos e emoções que surgem em situações difíceis. Entendemos o "porquê" do que você sente.
+            </p>
+          </div>
 
-           <div className="space-y-12">
-             {steps.map((step) => (
-               <div key={step.id} className={`relative flex flex-col md:flex-row items-center ${step.side === 'right' ? 'md:flex-row-reverse' : ''}`}>
-                 
-                 {/* Content Box */}
-                 <div className="flex-1 w-full pl-12 md:pl-0 pr-0 md:px-8">
-                    <motion.div 
-                      className={`bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-primary-300 transition-all cursor-pointer ${step.side === 'left' ? 'md:text-right' : 'md:text-left'}`}
-                      whileHover={{ scale: 1.02 }}
-                      onClick={() => setActiveStep(activeStep === step.id ? null : step.id)}
-                    >
-                       <h4 className="text-xl font-bold text-slate-800 mb-2">{step.title}</h4>
-                       <p className="text-slate-600 text-sm">{step.description}</p>
-                       
-                       <AnimatePresence>
-                         {activeStep === step.id && (
-                           <motion.div
-                             initial={{ height: 0, opacity: 0 }}
-                             animate={{ height: 'auto', opacity: 1 }}
-                             exit={{ height: 0, opacity: 0 }}
-                             className="overflow-hidden mt-3 pt-3 border-t border-slate-100 text-slate-600 text-sm bg-primary-50/50 rounded p-2"
-                           >
-                             {step.fullText}
-                           </motion.div>
-                         )}
-                       </AnimatePresence>
-                    </motion.div>
-                 </div>
+          {/* Card 2 */}
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center flex flex-col items-center h-full hover:shadow-lg transition-shadow duration-300 transform md:-translate-y-4">
+            <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-6">
+              <HelpCircle size={28} />
+            </div>
+            <h4 className="text-xl font-bold text-slate-900 mb-4">2. Questionar</h4>
+            <p className="text-slate-600 leading-relaxed text-sm">
+              Colocamos à prova esses pensamentos. Eles são fatos ou interpretações? Flexibilizamos sua forma de ver o mundo.
+            </p>
+          </div>
 
-                 {/* Center Icon */}
-                 <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-10 h-10 bg-primary-600 rounded-full border-4 border-slate-50 flex items-center justify-center text-white z-10">
-                    {step.icon}
-                 </div>
+          {/* Card 3 */}
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center flex flex-col items-center h-full hover:shadow-lg transition-shadow duration-300">
+            <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-6">
+              <RefreshCw size={28} />
+            </div>
+            <h4 className="text-xl font-bold text-slate-900 mb-4">3. Transformar</h4>
+            <p className="text-slate-600 leading-relaxed text-sm">
+              Desenvolvemos novos comportamentos. A mudança sai do consultório e entra na sua vida prática, gerando autonomia.
+            </p>
+          </div>
 
-                 {/* Empty Space for Balance */}
-                 <div className="hidden md:block flex-1"></div>
-               </div>
-             ))}
-           </div>
-        </div>
-
-        {/* Benefits Grid */}
-        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
-           <h4 className="text-2xl font-serif font-bold text-slate-900 mb-8 text-center">Benefícios Práticos e Reais</h4>
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                "Gerenciar crises de ansiedade",
-                "Melhorar a qualidade do sono",
-                "Desenvolver comunicação assertiva",
-                "Aumentar a autoestima",
-                "Tomar decisões com clareza",
-                "Reduzir a procrastinação"
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                   <CheckCircle2 className="text-green-500 shrink-0 mt-1" size={20} />
-                   <span className="text-slate-700 font-medium">{item}</span>
-                </div>
-              ))}
-           </div>
-           
-           <div className="mt-10 p-6 bg-slate-50 rounded-xl text-center">
-              <p className="text-slate-600 font-medium mb-4">
-                 <span className="text-primary-700 font-bold">Nota Importante:</span> A Terapia Colaborativa significa que eu atuo como um guia técnico, mas você detém o conhecimento da sua vida. Trabalhamos como uma dupla.
-              </p>
-           </div>
         </div>
 
       </div>
