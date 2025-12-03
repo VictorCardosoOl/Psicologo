@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CloudRain, Wind, Zap, Users, Brain, Activity } from 'lucide-react';
+import { CloudRain, Wind, Zap, Users, Brain, Activity, MessageCircle } from 'lucide-react';
 import { AnxietyType } from '../types';
 
 const anxietyTypes: AnxietyType[] = [
@@ -100,10 +100,15 @@ const AnxietySection: React.FC = () => {
              whileHover={{ scale: 1.02 }}
              className="inline-block p-1 bg-gradient-to-r from-sage-200 to-sand-200 rounded-full"
            >
-             <button onClick={() => document.getElementById('chat-trigger')?.click()} className="px-8 py-3 bg-white rounded-full text-slate-700 font-medium hover:bg-slate-50 transition-colors flex items-center gap-2">
-               <Brain size={18} className="text-sage-600" />
-               Não tem certeza do que sente? Converse com a Sofia
-             </button>
+             <a 
+                href="https://wa.me/5511999998888"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 bg-white rounded-full text-slate-700 font-medium hover:bg-slate-50 transition-colors flex items-center gap-2"
+             >
+               <MessageCircle size={18} className="text-green-600" />
+               Não tem certeza do que sente? Fale comigo no WhatsApp
+             </a>
            </motion.div>
         </div>
 

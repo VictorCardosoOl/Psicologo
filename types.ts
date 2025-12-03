@@ -12,13 +12,6 @@ export interface Testimonial {
   role?: string;
 }
 
-export interface ChatMessage {
-  id: string;
-  role: 'user' | 'model';
-  text: string;
-  isError?: boolean;
-}
-
 export interface NavigationLink {
   label: string;
   href: string;
