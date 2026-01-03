@@ -17,7 +17,8 @@ const Hero: React.FC = () => {
       </div>
 
       {/* LADO ESQUERDO: Conteúdo Tipográfico */}
-      <div className="w-full lg:w-[55%] h-full flex flex-col justify-center px-6 sm:px-12 lg:pl-24 lg:pr-12 relative z-20 order-2 lg:order-1 pt-4 lg:pt-0">
+      {/* CORREÇÃO: pt-28 (mobile) e lg:pt-32 (desktop) adicionados para empurrar o conteúdo para baixo do Navbar fixo */}
+      <div className="w-full lg:w-[55%] h-full flex flex-col justify-center px-6 sm:px-12 lg:pl-24 lg:pr-12 relative z-20 order-2 lg:order-1 pt-28 lg:pt-32">
         
         <motion.div style={{ y: yText }} className="relative flex flex-col justify-center h-full max-h-[90vh]">
             {/* Tagline com linha decorativa */}
@@ -32,7 +33,6 @@ const Hero: React.FC = () => {
             </motion.div>
 
             {/* Título Massivo - Estilo Editorial Otimizado */}
-            {/* Ajuste: Redução leve no tamanho XL e leading mais apertado (0.9) para economizar altura */}
             <h1 className="font-serif text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[0.9] text-stone-900 tracking-tight mb-6">
               <span className="block overflow-hidden pb-1">
                 <motion.span 
@@ -54,7 +54,6 @@ const Hero: React.FC = () => {
                   merece um lugar
                 </motion.span>
               </span>
-              {/* CORREÇÃO CRÍTICA: pb-4 para descenders (perna do 'g'), -mb-4 para não empurrar o layout */}
               <span className="block overflow-hidden pb-4 -mb-4">
                 <motion.span 
                   initial={{ y: "100%" }} 
