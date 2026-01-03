@@ -26,11 +26,11 @@ const CommonDisorders: React.FC = () => {
   };
 
   return (
-    <section id="sinais" className="py-24 bg-stone-50">
+    <section id="sinais" className="py-16 md:py-20 bg-stone-50">
       <div className="max-w-screen-2xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Cabeçalho da Seção */}
-        <div className="mb-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+        <div className="mb-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
            <div className="md:col-span-8">
                 <h2 className="text-xs font-bold text-primary-600 uppercase tracking-[0.2em] mb-4">Identificação de Sintomas</h2>
                 <h3 className="text-4xl md:text-6xl font-serif font-medium text-stone-900 leading-[1.1]">

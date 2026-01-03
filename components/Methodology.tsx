@@ -4,7 +4,7 @@ import { Search, HelpCircle, RefreshCw, Brain, Sparkles } from 'lucide-react';
 
 const Methodology: React.FC = () => {
   return (
-    <section id="methodology" className="py-32 bg-stone-50 relative overflow-hidden">
+    <section id="methodology" className="py-16 md:py-24 bg-stone-50 relative overflow-hidden">
       
       {/* Elemento Decorativo de Fundo */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent opacity-50"></div>
@@ -12,7 +12,7 @@ const Methodology: React.FC = () => {
       <div className="max-w-screen-2xl mx-auto px-6 sm:px-8 lg:px-12 relative">
         
         {/* Intro Section: Psychotherapy & Mental Health */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 mb-32 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 mb-20 items-start">
           
           {/* Left: How it works */}
           <motion.div 
@@ -80,7 +80,7 @@ const Methodology: React.FC = () => {
 
         {/* TCC Pillars Section */}
         <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-20">
+            <div className="text-center mb-16">
             <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

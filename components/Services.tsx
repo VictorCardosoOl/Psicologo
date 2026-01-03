@@ -4,11 +4,11 @@ import { ArrowRight, Brain, HeartPulse, Battery, FileText, Monitor, ShieldCheck,
 
 const Services: React.FC = () => {
   return (
-    <section id="services" className="pt-12 pb-32 bg-white text-stone-900">
+    <section id="services" className="pt-8 pb-2 md:pb-8 bg-white text-stone-900">
       <div className="max-w-screen-2xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Header da Seção */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
             <motion.div 
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}

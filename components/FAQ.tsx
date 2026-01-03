@@ -7,7 +7,7 @@ const FAQ: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
   return (
-    <section className="py-24 bg-white">
+    <section className="pt-0 pb-16 md:pb-20 bg-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <h2 className="text-3xl font-serif font-bold text-center text-slate-900 mb-12">Dúvidas Comuns</h2>
         
