@@ -5,7 +5,6 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Ajustado para 100px para garantir que o título da seção não fique escondido atrás do header fixo */
     scroll-padding-top: 100px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -13,35 +12,31 @@
   }
   
   body {
-    @apply bg-stone-50 text-stone-800;
+    @apply bg-stone-50 text-stone-900 overflow-x-hidden;
   }
 
-  /* Tipografia Editorial Padrão */
+  /* Typography Refinements */
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-tight text-stone-900;
   }
 
-  /* Ajuste para parágrafos longos terem leitura confortável */
+  /* Improved Paragraph Readability */
   p {
-    @apply leading-relaxed;
+    @apply leading-relaxed text-stone-600 font-light;
+  }
+  
+  /* Container Consistency */
+  .container-custom {
+    @apply max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-20;
   }
 }
 
 @layer utilities {
-  .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-  }
-  .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-  }
-  
   .text-balance {
     text-wrap: balance;
   }
-
-  /* Utilitário para animação de texto suave */
-  .reveal-text {
-    animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  
+  .perspective {
+    perspective: 1000px;
   }
 }
