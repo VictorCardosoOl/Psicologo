@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
             </div>
             <div>
                <h1 className="font-serif text-xl font-bold text-stone-900 leading-none tracking-tight group-hover:text-primary-700 transition-colors">Luiz Felipe</h1>
-               <p className="text-[10px] text-stone-500 font-bold uppercase tracking-[0.2em] mt-1">Psicologia Clínica</p>
+               <p className="text-[10px] text-stone-500 font-bold uppercase tracking-[0.2em] mt-1">Psicoterapia</p>
             </div>
           </div>
 

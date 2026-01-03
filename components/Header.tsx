@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ onFontSizeChange, currentView, onNaviga
             </div>
             <div>
               <h1 className="font-serif text-xl font-bold text-slate-800 tracking-tight">Dr. André Silva</h1>
-              <p className="text-[10px] text-sage-700 tracking-[0.2em] uppercase font-bold">Psicologia Clínica • CRP 06/12345</p>
+              <p className="text-[10px] text-sage-700 tracking-[0.2em] uppercase font-bold">Psicoterapia • CRP 06/12345</p>
             </div>
           </div>
 

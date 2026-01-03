@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ArrowDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Hero: React.FC = () => {
@@ -17,7 +17,6 @@ const Hero: React.FC = () => {
       </div>
 
       {/* LADO ESQUERDO: Conteúdo Tipográfico */}
-      {/* CORREÇÃO: pt-28 (mobile) e lg:pt-32 (desktop) adicionados para empurrar o conteúdo para baixo do Navbar fixo */}
       <div className="w-full lg:w-[55%] h-full flex flex-col justify-center px-6 sm:px-12 lg:pl-24 lg:pr-12 relative z-20 order-2 lg:order-1 pt-28 lg:pt-32">
         
         <motion.div style={{ y: yText }} className="relative flex flex-col justify-center h-full max-h-[90vh]">
@@ -29,7 +28,7 @@ const Hero: React.FC = () => {
               className="flex items-center gap-4 mb-6"
             >
               <span className="h-[1px] w-12 bg-stone-900"></span>
-              <span className="text-xs md:text-sm font-bold text-stone-900 uppercase tracking-[0.3em]">Psicologia Clínica</span>
+              <span className="text-xs md:text-sm font-bold text-stone-900 uppercase tracking-[0.3em]">Psicoterapia</span>
             </motion.div>
 
             {/* Título Massivo - Estilo Editorial Otimizado */}
@@ -108,27 +107,10 @@ const Hero: React.FC = () => {
               </a>
             </motion.div>
         </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-6 left-6 lg:left-24 hidden md:flex items-center gap-3"
-        >
-          <div className="w-px h-10 bg-stone-300 relative overflow-hidden">
-             <motion.div 
-                animate={{ y: [0, 40, 40] }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: "circIn" }}
-                className="absolute top-0 left-0 w-full h-1/2 bg-stone-900"
-             ></motion.div>
-          </div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-stone-400">Scroll</span>
-        </motion.div>
       </div>
 
       {/* LADO DIREITO: Imagem Full Height */}
-      <div className="w-full lg:w-[45%] h-[35vh] lg:h-full relative order-1 lg:order-2 overflow-hidden bg-stone-200">
+      <div className="w-full lg:w-[45%] h-[35vh] lg:h-full relative order-1 lg:order-2 bg-stone-200">
         <motion.div style={{ y: yImage }} className="w-full h-[120%] relative -top-[10%]">
              <img 
                src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1200&auto=format&fit=crop" 
@@ -138,28 +120,25 @@ const Hero: React.FC = () => {
              <div className="absolute inset-0 bg-stone-900/10 mix-blend-multiply"></div>
         </motion.div>
 
-        {/* Badge Giratório "Awards Style" */}
-        <div className="absolute bottom-[-1px] left-[-1px] lg:top-auto lg:bottom-12 lg:-left-16 z-30 hidden lg:block">
-           <div className="relative w-32 h-32 flex items-center justify-center">
-              {/* Texto Circular (SVG) */}
+        {/* Badge Giratório Refinado (Apenas Texto) */}
+        <div className="absolute bottom-[-1px] left-[-1px] lg:top-auto lg:bottom-16 lg:-left-20 z-30 hidden lg:block">
+           <div className="relative w-40 h-40 flex items-center justify-center pointer-events-none">
+              
+              {/* Círculo de Texto Rotativo */}
               <motion.div 
                 animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
+                transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
                 className="absolute inset-0 w-full h-full"
               >
-                <svg viewBox="0 0 100 100" className="w-full h-full">
+                <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
                   <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
-                  <text className="text-[11px] font-bold uppercase tracking-[0.15em] fill-stone-900">
+                  <text className="font-serif text-[10px] font-medium uppercase tracking-[0.18em] fill-stone-800">
                     <textPath href="#circlePath" startOffset="0%">
-                      Psicologia Clínica • Terapia Cognitivo Comportamental •
+                       • Psicoterapia • Terapia Cognitivo Comportamental
                     </textPath>
                   </text>
                 </svg>
               </motion.div>
-              {/* Seta Central */}
-              <div className="bg-stone-50 rounded-full w-12 h-12 flex items-center justify-center shadow-md z-10">
-                 <ArrowDown className="text-stone-900 w-5 h-5 animate-bounce" />
-              </div>
            </div>
         </div>
       </div>
