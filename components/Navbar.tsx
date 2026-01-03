@@ -3,12 +3,7 @@ import { Menu, X, BookOpen, MessageCircle, ChevronDown, Download, BrainCircuit }
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { navLinks, ebooksList } from '../data';
 
-interface NavbarProps {
-  currentView: 'home' | 'article';
-  onNavigateHome: () => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigateHome }) => {
+const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [ebooksOpen, setEbooksOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -41,10 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigateHome }) => {
           {/* Logo */}
           <div 
             className="flex items-center gap-3 cursor-pointer group"
-            onClick={() => {
-              if (currentView === 'article') onNavigateHome();
-              else window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${scrolled ? 'bg-stone-900 text-white' : 'bg-stone-100 text-stone-900'}`}>
                 <BrainCircuit size={24} strokeWidth={1.5} />
