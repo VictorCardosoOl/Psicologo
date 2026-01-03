@@ -17,22 +17,23 @@ const Hero: React.FC = () => {
       </div>
 
       {/* LADO ESQUERDO: Conteúdo Tipográfico */}
-      <div className="w-full lg:w-[55%] h-full flex flex-col justify-center px-6 sm:px-12 lg:pl-24 lg:pr-12 relative z-20 order-2 lg:order-1 pt-12 lg:pt-0">
+      <div className="w-full lg:w-[55%] h-full flex flex-col justify-center px-6 sm:px-12 lg:pl-24 lg:pr-12 relative z-20 order-2 lg:order-1 pt-4 lg:pt-0">
         
-        <motion.div style={{ y: yText }} className="relative">
+        <motion.div style={{ y: yText }} className="relative flex flex-col justify-center h-full max-h-[90vh]">
             {/* Tagline com linha decorativa */}
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex items-center gap-4 mb-6 md:mb-8"
+              className="flex items-center gap-4 mb-6"
             >
               <span className="h-[1px] w-12 bg-stone-900"></span>
               <span className="text-xs md:text-sm font-bold text-stone-900 uppercase tracking-[0.3em]">Psicologia Clínica</span>
             </motion.div>
 
-            {/* Título Massivo - Estilo Editorial */}
-            <h1 className="font-serif text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] leading-[0.95] text-stone-900 tracking-tight mb-8">
+            {/* Título Massivo - Estilo Editorial Otimizado */}
+            {/* Ajuste: Redução leve no tamanho XL e leading mais apertado (0.9) para economizar altura */}
+            <h1 className="font-serif text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[0.9] text-stone-900 tracking-tight mb-6">
               <span className="block overflow-hidden pb-1">
                 <motion.span 
                   initial={{ y: "100%" }} 
@@ -53,37 +54,45 @@ const Hero: React.FC = () => {
                   merece um lugar
                 </motion.span>
               </span>
-              {/* CORREÇÃO AQUI: pb-4 md:pb-6 cria espaço para o 'g' não ser cortado, -mb compensa o espaço extra */}
-              <span className="block overflow-hidden pb-4 md:pb-6 -mb-4 md:-mb-6">
+              {/* CORREÇÃO CRÍTICA: pb-4 para descenders (perna do 'g'), -mb-4 para não empurrar o layout */}
+              <span className="block overflow-hidden pb-4 -mb-4">
                 <motion.span 
                   initial={{ y: "100%" }} 
                   animate={{ y: 0 }} 
                   transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="block italic font-light text-stone-600 pl-1" // pl-1 previne corte lateral em itálico
+                  className="block italic font-light text-stone-600 pl-1" 
                 >
                   seguro.
                 </motion.span>
               </span>
             </h1>
 
-            <motion.p 
+            <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="text-base md:text-lg text-stone-600 max-w-md leading-relaxed mb-10 font-light"
+              className="text-base text-stone-600 max-w-lg leading-relaxed mb-8 font-light space-y-3"
             >
-              Sou <strong>Luiz Felipe Braziliano</strong>. Utilizo a Terapia Cognitivo-Comportamental para transformar vulnerabilidade em autonomia e autoconhecimento.
-            </motion.p>
+              <p>
+                Sou <strong>Luiz Felipe Braziliano de Oliveira</strong>, psicólogo clínico (CRP 06/181948).
+              </p>
+              <p>
+                Através da Terapia Cognitivo-Comportamental (TCC), ajudo você a entender seus padrões e construir caminhos mais saudáveis para lidar com os desafios.
+              </p>
+              <p className="font-medium text-stone-800 italic text-sm">
+                O primeiro passo para a mudança é a decisão de não ficar como está.
+              </p>
+            </motion.div>
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-wrap gap-5"
+              className="flex flex-wrap gap-4"
             >
               <a 
                 href="#contact"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-stone-900 text-white rounded-full overflow-hidden transition-all hover:pr-12 shadow-lg hover:shadow-xl"
+                className="group relative inline-flex items-center justify-center px-8 py-3.5 bg-stone-900 text-white rounded-full overflow-hidden transition-all hover:pr-12 shadow-lg hover:shadow-xl"
               >
                 <span className="relative z-10 text-xs font-bold uppercase tracking-widest">Agendar Sessão</span>
                 <span className="absolute right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 z-10">
@@ -94,7 +103,7 @@ const Hero: React.FC = () => {
               
               <a 
                 href="#methodology"
-                className="inline-flex items-center justify-center px-8 py-4 border border-stone-200 text-stone-600 rounded-full hover:bg-stone-50 hover:border-stone-400 transition-all text-xs font-bold uppercase tracking-widest"
+                className="inline-flex items-center justify-center px-8 py-3.5 border border-stone-200 text-stone-600 rounded-full hover:bg-stone-50 hover:border-stone-400 transition-all text-xs font-bold uppercase tracking-widest"
               >
                 Conhecer Abordagem
               </a>
@@ -106,11 +115,11 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-8 left-6 lg:left-24 hidden md:flex items-center gap-3"
+          className="absolute bottom-6 left-6 lg:left-24 hidden md:flex items-center gap-3"
         >
-          <div className="w-px h-12 bg-stone-300 relative overflow-hidden">
+          <div className="w-px h-10 bg-stone-300 relative overflow-hidden">
              <motion.div 
-                animate={{ y: [0, 48, 48] }}
+                animate={{ y: [0, 40, 40] }}
                 transition={{ repeat: Infinity, duration: 1.5, ease: "circIn" }}
                 className="absolute top-0 left-0 w-full h-1/2 bg-stone-900"
              ></motion.div>
@@ -120,7 +129,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* LADO DIREITO: Imagem Full Height */}
-      <div className="w-full lg:w-[45%] h-[45vh] lg:h-full relative order-1 lg:order-2 overflow-hidden bg-stone-200">
+      <div className="w-full lg:w-[45%] h-[35vh] lg:h-full relative order-1 lg:order-2 overflow-hidden bg-stone-200">
         <motion.div style={{ y: yImage }} className="w-full h-[120%] relative -top-[10%]">
              <img 
                src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1200&auto=format&fit=crop" 
@@ -130,7 +139,7 @@ const Hero: React.FC = () => {
              <div className="absolute inset-0 bg-stone-900/10 mix-blend-multiply"></div>
         </motion.div>
 
-        {/* Badge Giratório "Awards Style" - Posicionado na interseção */}
+        {/* Badge Giratório "Awards Style" */}
         <div className="absolute bottom-[-1px] left-[-1px] lg:top-auto lg:bottom-12 lg:-left-16 z-30 hidden lg:block">
            <div className="relative w-32 h-32 flex items-center justify-center">
               {/* Texto Circular (SVG) */}
