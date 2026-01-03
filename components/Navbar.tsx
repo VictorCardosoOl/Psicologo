@@ -29,13 +29,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigateHome }) => {
   return (
     <>
       <header 
-        className={`fixed w-full z-50 transition-all duration-500 border-b ${
+        className={`fixed w-full z-50 transition-all duration-500 ${
           scrolled 
-            ? 'bg-white/90 backdrop-blur-md border-stone-200 py-3 shadow-sm' 
-            : 'bg-transparent border-transparent py-5'
+            ? 'bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-sm py-3' 
+            : 'bg-white/60 backdrop-blur-md border-b border-transparent py-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        {/* Ajuste para max-w-screen-2xl para alinhar com o novo Hero */}
+        <div className="max-w-screen-2xl mx-auto px-6 sm:px-8 lg:px-12 flex justify-between items-center">
           
           {/* Logo */}
           <div 
@@ -45,7 +46,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigateHome }) => {
               else window.scrollTo(0, 0);
             }}
           >
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${scrolled ? 'bg-primary-600 text-white' : 'bg-white text-primary-600 shadow-md'}`}>
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${scrolled ? 'bg-stone-900 text-white' : 'bg-white text-stone-900 shadow-sm'}`}>
                 <BrainCircuit size={24} strokeWidth={1.5} />
             </div>
             <div>
@@ -56,12 +57,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigateHome }) => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            <nav className="flex gap-6">
+            <nav className="flex gap-8">
                 {navLinks.slice(1, 5).map((link) => (
                     <a 
                         key={link.label} 
                         href={link.href} 
-                        className="text-sm font-medium text-stone-600 hover:text-primary-700 transition-colors relative after:content-[''] after:absolute after:w-0 after:h-px after:bg-primary-600 after:left-0 after:-bottom-1 after:transition-all hover:after:w-full"
+                        className="text-xs font-bold uppercase tracking-widest text-stone-600 hover:text-stone-900 transition-colors relative after:content-[''] after:absolute after:w-0 after:h-px after:bg-stone-900 after:left-0 after:-bottom-1 after:transition-all hover:after:w-full"
                     >
                         {link.label}
                     </a>
@@ -76,8 +77,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigateHome }) => {
                 onMouseEnter={() => setEbooksOpen(true)}
                 onMouseLeave={() => setEbooksOpen(false)}
             >
-              <button className="flex items-center gap-2 text-stone-600 text-sm font-medium hover:text-primary-700 transition-colors py-2">
-                <BookOpen size={16} />
+              <button className="flex items-center gap-2 text-stone-600 text-xs font-bold uppercase tracking-widest hover:text-stone-900 transition-colors py-2">
+                <BookOpen size={14} />
                 Materiais
                 <ChevronDown size={12} className={`transition-transform duration-200 ${ebooksOpen ? 'rotate-180' : ''}`} />
               </button>
@@ -88,9 +89,9 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigateHome }) => {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute top-full right-0 w-64 bg-white rounded-2xl shadow-soft border border-stone-100 py-3 mt-2 overflow-hidden"
+                    className="absolute top-full right-0 w-64 bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-stone-100 py-3 mt-2 overflow-hidden"
                   >
-                    <div className="px-4 py-2 text-xs font-bold text-stone-400 uppercase tracking-wider">Downloads Gratuitos</div>
+                    <div className="px-4 py-2 text-[10px] font-bold text-stone-400 uppercase tracking-widest">Downloads Gratuitos</div>
                     {ebooksList.map((ebook, idx) => (
                       <a key={idx} href="#" className="flex items-center justify-between px-4 py-3 hover:bg-stone-50 text-sm text-stone-700 transition-colors group/item">
                         {ebook}
@@ -107,7 +108,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigateHome }) => {
               href="https://wa.me/5511999998888" 
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-stone-900 hover:bg-stone-800 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-stone-900/10 transition-all hover:-translate-y-0.5"
+              className="flex items-center gap-2 bg-stone-900 hover:bg-stone-800 text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg shadow-stone-900/10 transition-all hover:-translate-y-0.5"
             >
               <MessageCircle size={16} />
               Agendar

@@ -9,7 +9,7 @@ const Methodology: React.FC = () => {
       {/* Elemento Decorativo de Fundo */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent opacity-50"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-screen-2xl mx-auto px-6 sm:px-8 lg:px-12 relative">
         
         {/* Intro Section: Psychotherapy & Mental Health */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 mb-32 items-start">

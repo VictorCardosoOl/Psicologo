@@ -1,5 +1,5 @@
 import React from 'react';
-import { CloudRain, Users, Zap, Activity, BrainCircuit, BatteryWarning, HeartPulse, FileText, Brain } from 'lucide-react';
+import { CloudRain, Users, Zap, Activity, BrainCircuit, BatteryWarning, HeartPulse, FileText, Brain, Moon, Clock, HeartHandshake } from 'lucide-react';
 import { AnxietyType, BlogPost, NavigationLink, SymptomScenario, ServiceItem } from './types';
 
 // Navegação
@@ -62,7 +62,7 @@ export const scenarios: SymptomScenario[] = [
   },
   {
     id: 'panic',
-    triggerPhrase: "Sinto o coração disparar e um medo repentino de morrer ou perder o controle.",
+    triggerPhrase: "Sinto o coração disparar e um medo repentino de morrer.",
     disorderName: "Síndrome do Pânico",
     description: "Ataques súbitos de medo intenso que geram sintomas físicos reais (taquicardia, falta de ar), mesmo sem perigo aparente.",
     tccApproach: "Você aprenderá que as sensações físicas, embora assustadoras, não são perigosas, reduzindo o medo das próprias crises.",
@@ -73,7 +73,7 @@ export const scenarios: SymptomScenario[] = [
   },
   {
     id: 'depression',
-    triggerPhrase: "Sinto um vazio constante, desânimo e nada parece ter graça.",
+    triggerPhrase: "Sinto um vazio constante, desânimo e nada tem graça.",
     disorderName: "Depressão",
     description: "Não é apenas tristeza passageira. É uma perda de vitalidade que afeta o sono, o apetite e a vontade de realizar tarefas simples do dia a dia.",
     tccApproach: "Utilizamos a Ativação Comportamental para que você volte a sentir prazer nas pequenas coisas, passo a passo.",
@@ -83,8 +83,41 @@ export const scenarios: SymptomScenario[] = [
     borderColor: "border-slate-200"
   },
   {
+    id: 'insomnia',
+    triggerPhrase: "Deito na cama exausto, mas minha mente não desliga.",
+    disorderName: "Insônia & Higiene do Sono",
+    description: "Você sente o corpo cansado, mas os pensamentos aceleram justamente na hora de dormir. O sono não é reparador e o dia seguinte se torna uma luta.",
+    tccApproach: "Mapeamos hábitos noturnos e crenças sobre o sono. Aplicamos técnicas de relaxamento e restrição de sono para recondicionar seu cérebro.",
+    icon: <Moon size={32} />,
+    colorClass: "text-blue-900",
+    bgClass: "bg-blue-50",
+    borderColor: "border-blue-200"
+  },
+  {
+    id: 'procrastination',
+    triggerPhrase: "Tenho potencial e planos, mas travo na hora de fazer.",
+    disorderName: "Procrastinação / Foco",
+    description: "Não é preguiça. É uma dificuldade real de iniciar tarefas, manter o foco ou gerenciar o tempo, gerando culpa e sensação de incapacidade.",
+    tccApproach: "Dividimos grandes tarefas em passos micro. Trabalhamos a regulação emocional que causa o bloqueio e criamos sistemas de organização.",
+    icon: <Clock size={32} />,
+    colorClass: "text-orange-600",
+    bgClass: "bg-orange-50",
+    borderColor: "border-orange-200"
+  },
+  {
+    id: 'emotional_dependence',
+    triggerPhrase: "Minha felicidade depende da aprovação dos outros.",
+    disorderName: "Dependência Emocional",
+    description: "Você tem dificuldade em dizer 'não', medo excessivo de abandono e acaba se anulando para manter relacionamentos, mesmo que insatisfatórios.",
+    tccApproach: "Fortalecemos sua autoestima e autonomia. Você aprenderá a validar suas próprias emoções e estabelecer limites saudáveis sem culpa.",
+    icon: <HeartHandshake size={32} />,
+    colorClass: "text-rose-900",
+    bgClass: "bg-rose-50",
+    borderColor: "border-rose-200"
+  },
+  {
     id: 'burnout',
-    triggerPhrase: "Estou exausto e sinto que não dou conta das exigências do trabalho.",
+    triggerPhrase: "Estou exausto e não dou conta das exigências do trabalho.",
     disorderName: "Burnout",
     description: "Esgotamento físico e mental ligado à vida profissional. Você sente que, por mais que descanse, a energia não volta e o cinismo aumenta.",
     tccApproach: "Trabalhamos limites saudáveis, regulação do estresse e a reconstrução da sua identidade para além do trabalho.",

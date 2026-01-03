@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowDown, Activity, BrainCircuit, Battery, CloudRain, AlertCircle, ArrowRight } from 'lucide-react';
+import { ArrowDown, Activity, BrainCircuit, Battery, CloudRain, AlertCircle, ArrowRight, Moon, Clock, HeartHandshake } from 'lucide-react';
 import { scenarios } from '../data';
 
 const CommonDisorders: React.FC = () => {
@@ -17,6 +17,9 @@ const CommonDisorders: React.FC = () => {
         case 'anxiety': return <BrainCircuit size={48} strokeWidth={1} />;
         case 'panic': return <Activity size={48} strokeWidth={1} />;
         case 'depression': return <CloudRain size={48} strokeWidth={1} />;
+        case 'insomnia': return <Moon size={48} strokeWidth={1} />;
+        case 'procrastination': return <Clock size={48} strokeWidth={1} />;
+        case 'emotional_dependence': return <HeartHandshake size={48} strokeWidth={1} />;
         case 'burnout': return <Battery size={48} strokeWidth={1} />;
         default: return <AlertCircle size={48} strokeWidth={1} />;
     }
@@ -24,7 +27,7 @@ const CommonDisorders: React.FC = () => {
 
   return (
     <section id="sinais" className="py-24 bg-stone-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen-2xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Cabeçalho da Seção */}
         <div className="mb-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
@@ -52,12 +55,12 @@ const CommonDisorders: React.FC = () => {
                 {/* Botão Gatilho (Trigger) - Sempre visível */}
                 <button
                   onClick={() => toggleOpen(scenario.id)}
-                  className="w-full py-10 flex items-start md:items-center justify-between gap-6 text-left focus:outline-none transition-all duration-300 hover:bg-stone-100/50"
+                  className="w-full py-6 flex items-start md:items-center justify-between gap-6 text-left focus:outline-none transition-all duration-300 hover:bg-stone-100/50"
                 >
                   <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12 flex-1">
                     
                     {/* Coluna 1: Indicadores (Número e Status) */}
-                    <div className="flex items-center gap-4 min-w-[100px]">
+                    <div className="flex items-center gap-4 min-w-[80px] md:min-w-[100px]">
                         <span className={`text-sm font-bold tracking-wider transition-colors duration-300 ${isOpen ? 'text-primary-600' : 'text-stone-300 group-hover:text-stone-400'}`}>
                             {itemNumber}
                         </span>
@@ -65,16 +68,16 @@ const CommonDisorders: React.FC = () => {
                     </div>
 
                     {/* Coluna 2: A Pergunta/Frase (Texto Principal) */}
-                    <h4 className={`text-xl md:text-3xl font-serif font-medium leading-tight transition-colors duration-300 ${isOpen ? 'text-stone-900' : 'text-stone-500 group-hover:text-stone-800'}`}>
+                    <h4 className={`text-lg md:text-2xl font-serif font-medium leading-tight transition-colors duration-300 ${isOpen ? 'text-stone-900' : 'text-stone-500 group-hover:text-stone-800'}`}>
                       {scenario.triggerPhrase}
                     </h4>
                   </div>
 
                   {/* Coluna 3: Ícone de Ação (Seta) */}
-                  <div className={`relative w-12 h-12 flex items-center justify-center rounded-full border transition-all duration-300 ml-4 shrink-0
+                  <div className={`relative w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-300 ml-4 shrink-0
                       ${isOpen ? 'border-stone-900 bg-stone-900 text-white rotate-180' : 'border-stone-300 text-stone-400 group-hover:border-stone-900 group-hover:text-stone-900'}`}
                   >
-                    <ArrowDown size={20} strokeWidth={1.5} />
+                    <ArrowDown size={18} strokeWidth={1.5} />
                   </div>
                 </button>
 
