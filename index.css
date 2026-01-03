@@ -5,7 +5,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Garante que o scroll pare antes do header fixo cobrir o título */
+    /* Ajustado para 100px para garantir que o título da seção não fique escondido atrás do header fixo */
     scroll-padding-top: 100px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

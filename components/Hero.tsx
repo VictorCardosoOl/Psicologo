@@ -1,88 +1,160 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowRight, ArrowDown } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Hero: React.FC = () => {
-  return (
-    // Alterado para min-h-screen para garantir que ocupe a altura exata da tela
-    // Reduzido pt-24/32 para pt-20/28 para subir o conteúdo levemente
-    <section id="home" className="relative pt-20 pb-0 md:pt-24 md:pb-0 overflow-hidden bg-stone-50 min-h-screen flex items-center justify-center">
-      
-      {/* Background Elements */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-100/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-sage-100/40 rounded-full blur-[100px] translate-y-1/4 -translate-x-1/4 pointer-events-none"></div>
+  const { scrollY } = useScroll();
+  // Parallax sutil na imagem e no texto
+  const yText = useTransform(scrollY, [0, 500], [0, 100]);
+  const yImage = useTransform(scrollY, [0, 500], [0, -50]);
 
-      {/* Container Full Width */}
-      <div className="max-w-screen-2xl mx-auto px-6 sm:px-8 lg:px-12 relative w-full h-full flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center h-full">
-          
-          {/* Content */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 order-2 lg:order-1 space-y-6 md:space-y-8 py-8 lg:py-0"
-          >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-[5rem] font-serif font-medium text-stone-900 leading-[1.1] tracking-tight text-balance">
-              Sua mente merece ser um lugar <span className="text-primary-600 italic font-normal">seguro</span>.
+  return (
+    <section id="home" className="relative w-full h-[100dvh] flex flex-col lg:flex-row bg-[#FDFCFB] overflow-hidden">
+      
+      {/* Texture Overlay (Granulação Fina) */}
+      <div className="absolute inset-0 opacity-[0.35] pointer-events-none z-50 mix-blend-multiply" 
+           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")` }}>
+      </div>
+
+      {/* LADO ESQUERDO: Conteúdo Tipográfico */}
+      <div className="w-full lg:w-[55%] h-full flex flex-col justify-center px-6 sm:px-12 lg:pl-24 lg:pr-12 relative z-20 order-2 lg:order-1 pt-12 lg:pt-0">
+        
+        <motion.div style={{ y: yText }} className="relative">
+            {/* Tagline com linha decorativa */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex items-center gap-4 mb-6 md:mb-8"
+            >
+              <span className="h-[1px] w-12 bg-stone-900"></span>
+              <span className="text-xs md:text-sm font-bold text-stone-900 uppercase tracking-[0.3em]">Psicologia Clínica</span>
+            </motion.div>
+
+            {/* Título Massivo - Estilo Editorial */}
+            <h1 className="font-serif text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] leading-[0.95] text-stone-900 tracking-tight mb-8">
+              <span className="block overflow-hidden">
+                <motion.span 
+                  initial={{ y: "100%" }} 
+                  animate={{ y: 0 }} 
+                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                  className="block"
+                >
+                  Sua mente
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden">
+                <motion.span 
+                  initial={{ y: "100%" }} 
+                  animate={{ y: 0 }} 
+                  transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="block"
+                >
+                  merece um lugar
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden">
+                <motion.span 
+                  initial={{ y: "100%" }} 
+                  animate={{ y: 0 }} 
+                  transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="block italic font-light text-stone-600"
+                >
+                  seguro.
+                </motion.span>
+              </span>
             </h1>
-            
-            <p className="text-base md:text-lg text-stone-500 leading-relaxed max-w-xl font-light">
-              Sou <strong>Luiz Felipe Braziliano</strong>. Através da Terapia Cognitivo-Comportamental, ajudo você a entender seus padrões e reencontrar o equilíbrio emocional.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.6 }}
+              className="text-base md:text-lg text-stone-600 max-w-md leading-relaxed mb-10 font-light"
+            >
+              Sou <strong>Luiz Felipe Braziliano</strong>. Utilizo a Terapia Cognitivo-Comportamental para transformar vulnerabilidade em autonomia e autoconhecimento.
+            </motion.p>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="flex flex-wrap gap-5"
+            >
               <a 
                 href="#contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-stone-900 text-white text-sm font-bold tracking-wide uppercase rounded-2xl hover:bg-stone-800 transition-all shadow-xl shadow-stone-900/10 hover:shadow-2xl hover:-translate-y-1"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-stone-900 text-white rounded-full overflow-hidden transition-all hover:pr-12"
               >
-                Agendar Sessão
-                <ArrowRight className="ml-3 h-4 w-4" />
+                <span className="relative z-10 text-xs font-bold uppercase tracking-widest">Agendar Sessão</span>
+                <span className="absolute right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 z-10">
+                  <ArrowRight size={16} />
+                </span>
+                <div className="absolute inset-0 bg-stone-800 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 ease-out"></div>
               </a>
+              
               <a 
                 href="#methodology"
-                className="inline-flex items-center justify-center px-8 py-4 bg-transparent border border-stone-300 text-stone-600 text-sm font-bold tracking-wide uppercase rounded-2xl hover:bg-stone-50 hover:border-stone-400 transition-all"
+                className="inline-flex items-center justify-center px-8 py-4 border border-stone-200 text-stone-600 rounded-full hover:bg-stone-50 hover:border-stone-400 transition-all text-xs font-bold uppercase tracking-widest"
               >
-                Como funciona?
+                Conhecer Abordagem
               </a>
-            </div>
+            </motion.div>
+        </motion.div>
 
-            <div className="flex gap-6 text-stone-400 text-[10px] md:text-xs font-bold uppercase tracking-widest pt-1">
-                <span className="flex items-center gap-2">✓ Atendimento Online</span>
-                <span className="flex items-center gap-2">✓ Sigilo Absoluto</span>
-            </div>
-          </motion.div>
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-8 left-6 lg:left-24 hidden md:flex items-center gap-3"
+        >
+          <div className="w-px h-12 bg-stone-300 relative overflow-hidden">
+             <motion.div 
+                animate={{ y: [0, 48, 48] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "circIn" }}
+                className="absolute top-0 left-0 w-full h-1/2 bg-stone-900"
+             ></motion.div>
+          </div>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-stone-400">Scroll</span>
+        </motion.div>
+      </div>
 
-          {/* Image / Visual - Ajustada altura máxima para não estourar viewport */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95, x: 20 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 order-1 lg:order-2 relative group flex justify-center lg:justify-end items-center h-full"
-          >
-            <div className="relative w-full max-w-[500px] lg:max-w-[650px]">
-               {/* Organic Shape Blob */}
-               <div className="absolute inset-0 bg-gradient-to-tr from-stone-200 to-primary-100/50 rounded-[3rem] rotate-3 transform scale-95 -z-10 transition-transform duration-1000 group-hover:rotate-0 w-full h-full"></div>
-               
-               {/* Imagem com max-height para garantir que caiba na tela */}
-               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-stone-900/10 w-full aspect-[4/5] max-h-[75vh] object-cover">
-                  <img 
-                    src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1000&auto=format&fit=crop" 
-                    alt="Psicólogo Luiz Felipe Braziliano" 
-                    className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent opacity-80"></div>
-                  
-                  <div className="absolute bottom-6 left-6 right-6 text-white backdrop-blur-md bg-white/5 p-5 rounded-2xl border border-white/10">
-                      <p className="font-serif italic text-xl md:text-2xl mb-2 leading-tight">"O autoconhecimento é o primeiro passo para a liberdade."</p>
-                      <p className="text-[10px] uppercase tracking-[0.2em] opacity-80 font-bold">Luiz Felipe • CRP 06/181948</p>
-                  </div>
-               </div>
-            </div>
-          </motion.div>
+      {/* LADO DIREITO: Imagem Full Height */}
+      <div className="w-full lg:w-[45%] h-[45vh] lg:h-full relative order-1 lg:order-2 overflow-hidden bg-stone-200">
+        <motion.div style={{ y: yImage }} className="w-full h-[120%] relative -top-[10%]">
+             <img 
+               src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1200&auto=format&fit=crop" 
+               alt="Psicólogo Luiz Felipe" 
+               className="w-full h-full object-cover object-top"
+             />
+             <div className="absolute inset-0 bg-stone-900/10 mix-blend-multiply"></div>
+        </motion.div>
 
+        {/* Badge Giratório "Awards Style" - Posicionado na interseção */}
+        <div className="absolute bottom-[-1px] left-[-1px] lg:top-auto lg:bottom-12 lg:-left-16 z-30 hidden lg:block">
+           <div className="relative w-32 h-32 flex items-center justify-center">
+              {/* Texto Circular (SVG) */}
+              <motion.div 
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <svg viewBox="0 0 100 100" className="w-full h-full">
+                  <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
+                  <text className="text-[11px] font-bold uppercase tracking-[0.15em] fill-stone-900">
+                    <textPath href="#circlePath" startOffset="0%">
+                      Psicologia Clínica • Terapia Cognitivo Comportamental •
+                    </textPath>
+                  </text>
+                </svg>
+              </motion.div>
+              {/* Seta Central */}
+              <div className="bg-stone-50 rounded-full w-12 h-12 flex items-center justify-center shadow-md z-10">
+                 <ArrowDown className="text-stone-900 w-5 h-5 animate-bounce" />
+              </div>
+           </div>
         </div>
       </div>
+
     </section>
   );
 };
