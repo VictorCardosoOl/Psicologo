@@ -1,195 +1,150 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, CloudRain, AlertTriangle, BatteryWarning, Activity, BrainCircuit, Heart, MessageCircle, ChevronRight, CheckCircle2 } from 'lucide-react';
-
-interface SymptomScenario {
-  id: string;
-  triggerPhrase: string;
-  disorderName: string;
-  description: string;
-  tccApproach: string;
-  icon: React.ReactNode;
-  colorClass: string;
-  bgClass: string;
-  borderColor: string;
-}
-
-const scenarios: SymptomScenario[] = [
-  {
-    id: 'anxiety',
-    triggerPhrase: "Minha cabeça não para e estou sempre esperando o pior.",
-    disorderName: "Ansiedade Generalizada (TAG)",
-    description: "Você sente que está sempre em estado de alerta. A preocupação é excessiva, difícil de controlar e vem acompanhada de tensão muscular, irritabilidade ou insônia.",
-    tccApproach: "Na TCC, identificamos os gatilhos da preocupação e ensinamos técnicas concretas para acalmar a mente e retomar o controle.",
-    icon: <BrainCircuit size={32} />,
-    colorClass: "text-teal-600",
-    bgClass: "bg-teal-50",
-    borderColor: "border-teal-200"
-  },
-  {
-    id: 'panic',
-    triggerPhrase: "Sinto o coração disparar e um medo repentino de morrer ou perder o controle.",
-    disorderName: "Síndrome do Pânico",
-    description: "Ataques súbitos de medo intenso que geram sintomas físicos reais (taquicardia, falta de ar), mesmo sem perigo aparente.",
-    tccApproach: "Você aprenderá que as sensações físicas, embora assustadoras, não são perigosas, reduzindo o medo das próprias crises.",
-    icon: <Activity size={32} />,
-    colorClass: "text-indigo-600",
-    bgClass: "bg-indigo-50",
-    borderColor: "border-indigo-200"
-  },
-  {
-    id: 'depression',
-    triggerPhrase: "Sinto um vazio constante, desânimo e nada parece ter graça.",
-    disorderName: "Depressão",
-    description: "Não é apenas tristeza passageira. É uma perda de vitalidade que afeta o sono, o apetite e a vontade de realizar tarefas simples do dia a dia.",
-    tccApproach: "Utilizamos a Ativação Comportamental para que você volte a sentir prazer nas pequenas coisas, passo a passo.",
-    icon: <CloudRain size={32} />,
-    colorClass: "text-slate-600",
-    bgClass: "bg-slate-100",
-    borderColor: "border-slate-200"
-  },
-  {
-    id: 'burnout',
-    triggerPhrase: "Estou exausto e sinto que não dou conta das exigências do trabalho.",
-    disorderName: "Burnout",
-    description: "Esgotamento físico e mental ligado à vida profissional. Você sente que, por mais que descanse, a energia não volta e o cinismo aumenta.",
-    tccApproach: "Trabalhamos limites saudáveis, regulação do estresse e a reconstrução da sua identidade para além do trabalho.",
-    icon: <BatteryWarning size={32} />,
-    colorClass: "text-rose-600",
-    bgClass: "bg-rose-50",
-    borderColor: "border-rose-200"
-  }
-];
+import { ArrowRight, ArrowDown, Activity, BrainCircuit, Battery, CloudRain, AlertCircle } from 'lucide-react';
+import { scenarios } from '../data';
 
 const CommonDisorders: React.FC = () => {
-  // Start null so nothing is expanded by default
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>('anxiety');
 
-  const activeScenario = scenarios.find(s => s.id === selectedId);
+  const toggleOpen = (id: string) => {
+    setSelectedId(selectedId === id ? null : id);
+  };
+
+  // Helper para ícones grandes e estilizados na área expandida
+  const getIcon = (id: string) => {
+    switch(id) {
+        case 'anxiety': return <BrainCircuit size={64} strokeWidth={1} />;
+        case 'panic': return <Activity size={64} strokeWidth={1} />;
+        case 'depression': return <CloudRain size={64} strokeWidth={1} />;
+        case 'burnout': return <Battery size={64} strokeWidth={1} />;
+        default: return <AlertCircle size={64} strokeWidth={1} />;
+    }
+  };
 
   return (
-    <section id="sinais" className="py-24 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="sinais" className="py-24 bg-stone-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="mb-16 max-w-3xl">
-           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider mb-4">
-             <AlertTriangle size={14} />
-             Sinais de Alerta
+        {/* Header da Seção */}
+        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+           <div className="max-w-2xl">
+                <h2 className="text-sm font-bold text-primary-600 uppercase tracking-widest mb-3">Identificação</h2>
+                <h3 className="text-3xl md:text-5xl font-serif font-medium text-stone-900 leading-tight">
+                    O que sua mente diz?
+                </h3>
            </div>
-           <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6">
-             Como você tem se sentido?
-           </h2>
-           <p className="text-slate-600 text-lg leading-relaxed">
-             Muitas vezes, sabemos o que sentimos, mas não sabemos o nome disso. 
-             <br/><strong>Clique na frase que mais se conecta com seu momento atual</strong> para entender o que pode estar acontecendo.
+           <p className="text-stone-500 max-w-sm text-sm md:text-right">
+             Clique na frase que mais ressoa com o seu momento atual para entender o que pode estar acontecendo.
            </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          
-          {/* Left Column: Symptom List */}
-          <div className="lg:col-span-5 flex flex-col gap-4">
-            {scenarios.map((scenario) => (
-              <button
-                key={scenario.id}
-                onClick={() => setSelectedId(scenario.id)}
-                className={`
-                  group relative text-left p-6 rounded-xl transition-all duration-300 border flex items-center justify-between
-                  ${selectedId === scenario.id 
-                    ? 'bg-primary-600 text-white border-primary-600 shadow-lg translate-x-2' 
-                    : 'bg-white text-slate-600 border-slate-100 hover:border-primary-300 hover:shadow-md hover:bg-slate-50'
-                  }
-                `}
-              >
-                <div className="flex items-start gap-4 pr-4">
-                    <div className={`mt-1 w-4 h-4 rounded-full border-2 shrink-0 flex items-center justify-center ${selectedId === scenario.id ? 'border-white bg-white/20' : 'border-slate-300'}`}>
-                        {selectedId === scenario.id && <div className="w-2 h-2 rounded-full bg-white" />}
+        {/* Lista estilo K-News */}
+        <div className="border-t border-stone-300">
+          {scenarios.map((scenario) => {
+            const isOpen = selectedId === scenario.id;
+
+            return (
+              <div key={scenario.id} className="border-b border-stone-300 transition-colors duration-500 hover:bg-stone-50">
+                
+                {/* Cabeçalho do Item (Sempre visível) */}
+                <button
+                  onClick={() => toggleOpen(scenario.id)}
+                  className="w-full py-8 md:py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-left group focus:outline-none"
+                >
+                  <div className="flex items-center gap-6 md:gap-12 flex-1">
+                    {/* Indicador de Status (Círculo) */}
+                    <div className="hidden md:flex items-center justify-center w-6 h-6">
+                        <div className={`w-3 h-3 rounded-full transition-all duration-300 ${isOpen ? 'bg-stone-900 scale-125' : 'border border-stone-400 group-hover:bg-stone-400'}`}></div>
                     </div>
-                    <span className={`font-medium leading-snug text-base md:text-lg ${selectedId === scenario.id ? 'text-white' : 'text-slate-700'}`}>
-                    "{scenario.triggerPhrase}"
+
+                    {/* Label Pequeno (Data/Categoria no original) */}
+                    <span className="text-xs font-bold text-stone-400 uppercase tracking-widest w-24 flex-shrink-0">
+                      Sinal #{scenario.id.substring(0, 3)}
                     </span>
-                </div>
-                <ChevronRight size={20} className={`shrink-0 transition-opacity ${selectedId === scenario.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-50'}`} />
-              </button>
-            ))}
-          </div>
 
-          {/* Right Column: Context Display */}
-          <div className="lg:col-span-7 relative min-h-[500px]">
-            <AnimatePresence mode="wait">
-              {activeScenario ? (
-                <motion.div
-                  key={activeScenario.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className={`relative rounded-3xl p-8 md:p-12 shadow-xl border ${activeScenario.borderColor} ${activeScenario.bgClass} h-full flex flex-col`}
-                >
-                  <div className="flex items-center gap-4 mb-8">
-                    <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white shadow-sm ${activeScenario.colorClass}`}>
-                        {activeScenario.icon}
-                    </div>
-                    <div>
-                        <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1 block">Possível Quadro</span>
-                        <h3 className="text-2xl md:text-3xl font-serif font-bold text-slate-900 leading-none">
-                            {activeScenario.disorderName}
-                        </h3>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-6">
-                    <div>
-                        <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-                            O que é isso?
-                        </h4>
-                        <p className="text-slate-700 text-lg leading-relaxed">
-                            {activeScenario.description}
-                        </p>
-                    </div>
-
-                    <div className="bg-white/60 rounded-2xl p-6 border border-white/60">
-                        <h4 className="text-sm font-bold text-primary-700 uppercase tracking-wider mb-3 flex items-center gap-2">
-                        <Heart size={16} />
-                        Como a terapia ajuda
-                        </h4>
-                        <p className="text-slate-800 font-medium leading-relaxed">
-                        {activeScenario.tccApproach}
-                        </p>
-                    </div>
+                    {/* Frase Principal */}
+                    <h4 className={`text-xl md:text-3xl font-serif transition-colors duration-300 ${isOpen ? 'text-primary-800' : 'text-stone-800 group-hover:text-stone-600'}`}>
+                      "{scenario.triggerPhrase}"
+                    </h4>
                   </div>
 
-                  <div className="mt-8 pt-8 border-t border-slate-200/50">
-                    <a 
-                        href="https://wa.me/5511999998888" 
-                        target="_blank"
-                        className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-slate-800 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1"
+                  {/* Seta */}
+                  <div className="pl-4 md:pl-0 self-end md:self-center">
+                    <ArrowDown 
+                        size={24} 
+                        className={`text-stone-400 transition-transform duration-500 ${isOpen ? 'rotate-180 text-primary-600' : 'group-hover:translate-y-1'}`} 
+                    />
+                  </div>
+                </button>
+
+                {/* Conteúdo Expandido */}
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      className="overflow-hidden"
                     >
-                        Agendar avaliação sobre isso
-                        <ArrowRight size={18} />
-                    </a>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="empty"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="h-full flex flex-col items-center justify-center text-center p-12 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50"
-                >
-                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center text-slate-300 mb-6 shadow-sm">
-                    <CheckCircle2 size={40} className="text-slate-200" />
-                  </div>
-                  <h3 className="text-xl font-serif font-bold text-slate-400 mb-2">Selecione um sintoma ao lado</h3>
-                  <p className="text-slate-400 max-w-xs mx-auto">
-                    Ao clicar em uma das frases à esquerda, explicarei aqui o contexto clínico e como posso te ajudar.
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                      <div className="pb-12 pt-4 pl-0 md:pl-[calc(6rem+24px)] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        
+                        {/* Texto Explicativo */}
+                        <div className="space-y-6">
+                            <div>
+                                <h5 className="text-sm font-bold text-stone-400 uppercase tracking-wider mb-2">Quadro Provável</h5>
+                                <h2 className="text-3xl font-serif text-stone-900 mb-6">{scenario.disorderName}</h2>
+                                <p className="text-lg text-stone-600 leading-relaxed font-light border-l-2 border-primary-200 pl-6">
+                                    {scenario.description}
+                                </p>
+                            </div>
 
+                            <div className="bg-white p-6 rounded-xl border border-stone-100 shadow-sm">
+                                <h6 className="font-bold text-stone-900 mb-2 text-sm flex items-center gap-2">
+                                    <BrainCircuit size={16} className="text-primary-600" />
+                                    Como a TCC atua:
+                                </h6>
+                                <p className="text-stone-500 text-sm leading-relaxed">
+                                    {scenario.tccApproach}
+                                </p>
+                            </div>
+
+                            <div className="pt-4">
+                                <a 
+                                    href="https://wa.me/5511999998888"
+                                    className="inline-flex items-center gap-3 px-8 py-3 rounded-full border border-stone-900 text-stone-900 font-bold hover:bg-stone-900 hover:text-white transition-all duration-300 group/btn"
+                                >
+                                    Agendar Avaliação
+                                    <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Elemento Visual (Imagem/Icone Lado Direito) */}
+                        <div className="relative h-64 lg:h-80 w-full rounded-2xl overflow-hidden group/img cursor-pointer">
+                            {/* Fundo com Gradiente/Cor baseada no tipo */}
+                            <div className={`absolute inset-0 ${scenario.bgClass.replace('bg-', 'bg-gradient-to-br from-white to-')} opacity-50`}></div>
+                            
+                            {/* Imagem Placeholder Decorativa (abstrata para manter elegância) */}
+                            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+
+                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 transition-transform duration-700 group-hover/img:scale-105">
+                                <div className={`p-6 rounded-full bg-white shadow-soft mb-6 ${scenario.colorClass}`}>
+                                    {getIcon(scenario.id)}
+                                </div>
+                                <p className="text-stone-500 text-sm font-medium uppercase tracking-widest">
+                                    Identificação Clínica
+                                </p>
+                            </div>
+                        </div>
+
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

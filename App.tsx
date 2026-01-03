@@ -19,7 +19,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 transition-all duration-300">
+    <div className="min-h-screen bg-stone-50 font-sans text-stone-900 transition-all duration-300 selection:bg-primary-100 selection:text-primary-900">
       <Navbar currentView={currentView} onNavigateHome={handleBackToHome} />
       
       <main className="relative">

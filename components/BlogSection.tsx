@@ -2,38 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Clock, Tag } from 'lucide-react';
 import { BlogPost } from '../types';
-import { blogPosts } from '../data/blogData'; // Assuming data is separated or kept here
-
-// Temporary data if file separation isn't requested yet
-const postsData: BlogPost[] = [
-  {
-    id: '1',
-    title: "Como diferenciar tristeza de depressão?",
-    excerpt: "Entenda os sinais de alerta e quando é o momento certo de procurar ajuda profissional.",
-    date: "12 Out, 2023",
-    readTime: "5 min",
-    category: "Depressão",
-    content: "<p>Conteúdo detalhado sobre depressão...</p>"
-  },
-  {
-    id: '2',
-    title: "5 Técnicas de TCC para Ansiedade",
-    excerpt: "Ferramentas práticas que você pode aplicar no seu dia a dia para retomar o controle.",
-    date: "28 Set, 2023",
-    readTime: "7 min",
-    category: "Ansiedade",
-    content: "<p>Conteúdo detalhado sobre ansiedade...</p>"
-  },
-  {
-    id: '3',
-    title: "Autoconhecimento e Relações",
-    excerpt: "Por que entender suas emoções melhora seus relacionamentos afetivos e profissionais.",
-    date: "15 Set, 2023",
-    readTime: "4 min",
-    category: "Autoconhecimento",
-    content: "<p>Conteúdo detalhado sobre autoconhecimento...</p>"
-  }
-];
+import { blogPosts } from '../data';
 
 interface BlogSectionProps {
   onReadArticle: (post: BlogPost) => void;
@@ -44,8 +13,8 @@ const BlogSection: React.FC<BlogSectionProps> = ({ onReadArticle }) => {
   const categories = ['Todos', 'Ansiedade', 'Depressão', 'Autoconhecimento', 'TCC'];
 
   const filteredPosts = filter === 'Todos' 
-    ? postsData 
-    : postsData.filter(post => post.category === filter);
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === filter);
 
   return (
     <section id="blog" className="py-24 bg-slate-50">
@@ -76,7 +45,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ onReadArticle }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {filteredPosts.map((post, index) => (
+          {filteredPosts.map((post) => (
             <motion.article 
               key={post.id}
               layout

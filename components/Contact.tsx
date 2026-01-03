@@ -53,6 +53,7 @@ const Contact: React.FC = () => {
             <a 
                href="https://wa.me/5511999998888" 
                target="_blank"
+               rel="noopener noreferrer"
                className="block w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl text-center mb-6 transition-colors flex items-center justify-center gap-2"
             >
                <MessageCircle size={24} /> Conversar no WhatsApp

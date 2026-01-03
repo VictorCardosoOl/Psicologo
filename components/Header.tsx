@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X, BrainCircuit, Type, ArrowLeft } from 'lucide-react';
 import { NavigationLink } from '../types';
+import { navLinks } from '../data';
 
 interface HeaderProps {
   onFontSizeChange: () => void;
@@ -11,13 +12,11 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ onFontSizeChange, currentView, onNavigateHome }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const links: NavigationLink[] = [
-    { label: 'Sobre Mim', href: '#home' },
-    { label: 'Ansiedade', href: '#anxiety' },
-    { label: 'Metodologia', href: '#methodology' },
-    { label: 'Artigos', href: '#blog' },
-    { label: 'Contato', href: '#contact' },
-  ];
+  // Filter out unwanted links if necessary or use all from data
+  // For Header we might want to use the same as Navbar or a subset
+  const links: NavigationLink[] = navLinks.filter(l => l.label !== 'Transtornos' && l.label !== 'Serviços' && l.label !== 'Início'); 
+  // Customizing just to show how it can be used, or simply use navLinks:
+  // const links = navLinks;
 
   return (
     <header className="fixed w-full bg-white/90 backdrop-blur-md z-50 shadow-sm border-b border-sage-100 transition-all duration-300">
@@ -43,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ onFontSizeChange, currentView, onNaviga
           {/* Desktop Nav */}
           {currentView === 'home' ? (
             <nav className="hidden md:flex items-center space-x-8">
-              {links.map((link) => (
+              {navLinks.slice(1, 6).map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
@@ -112,7 +111,7 @@ const Header: React.FC<HeaderProps> = ({ onFontSizeChange, currentView, onNaviga
                   ← Voltar para Início
                 </button>
             )}
-            {links.map((link) => (
+            {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}

@@ -1,34 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CloudRain, Wind, Zap, Users, Brain, Activity, MessageCircle } from 'lucide-react';
-import { AnxietyType } from '../types';
-
-const anxietyTypes: AnxietyType[] = [
-  {
-    title: "Ansiedade Generalizada (TAG)",
-    shortDesc: "Preocupação excessiva e persistente.",
-    symptoms: ["Tensão muscular constante", "Irritabilidade", "Dificuldade para dormir", "Fadiga excessiva"],
-    icon: <CloudRain size={32} />
-  },
-  {
-    title: "Fobia Social",
-    shortDesc: "Medo intenso de interações sociais.",
-    symptoms: ["Medo de julgamento", "Evitação de eventos sociais", "Taquicardia em público", "Medo de falar"],
-    icon: <Users size={32} />
-  },
-  {
-    title: "Síndrome do Pânico",
-    shortDesc: "Crises repentinas de medo intenso.",
-    symptoms: ["Sensação de morte iminente", "Falta de ar", "Tontura", "Despersonalização"],
-    icon: <Zap size={32} />
-  },
-  {
-    title: "Burnout",
-    shortDesc: "Esgotamento profissional extremo.",
-    symptoms: ["Cansaço mental", "Desmotivação", "Cinismo", "Queda de rendimento"],
-    icon: <Activity size={32} />
-  }
-];
+import { MessageCircle } from 'lucide-react';
+import { anxietyTypes } from '../data';
 
 const AnxietySection: React.FC = () => {
   return (

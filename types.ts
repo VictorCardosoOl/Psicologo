@@ -35,3 +35,15 @@ export interface AnxietyType {
   symptoms: string[];
   icon: React.ReactNode;
 }
+
+export interface SymptomScenario {
+  id: string;
+  triggerPhrase: string;
+  disorderName: string;
+  description: string;
+  tccApproach: string;
+  icon: React.ReactNode;
+  colorClass: string;
+  bgClass: string;
+  borderColor: string;
+}
