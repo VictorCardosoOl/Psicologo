@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
 
             {/* Título Massivo - Estilo Editorial */}
             <h1 className="font-serif text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] leading-[0.95] text-stone-900 tracking-tight mb-8">
-              <span className="block overflow-hidden">
+              <span className="block overflow-hidden pb-1">
                 <motion.span 
                   initial={{ y: "100%" }} 
                   animate={{ y: 0 }} 
@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
                   Sua mente
                 </motion.span>
               </span>
-              <span className="block overflow-hidden">
+              <span className="block overflow-hidden pb-1">
                 <motion.span 
                   initial={{ y: "100%" }} 
                   animate={{ y: 0 }} 
@@ -53,12 +53,13 @@ const Hero: React.FC = () => {
                   merece um lugar
                 </motion.span>
               </span>
-              <span className="block overflow-hidden">
+              {/* CORREÇÃO AQUI: pb-4 md:pb-6 cria espaço para o 'g' não ser cortado, -mb compensa o espaço extra */}
+              <span className="block overflow-hidden pb-4 md:pb-6 -mb-4 md:-mb-6">
                 <motion.span 
                   initial={{ y: "100%" }} 
                   animate={{ y: 0 }} 
                   transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="block italic font-light text-stone-600"
+                  className="block italic font-light text-stone-600 pl-1" // pl-1 previne corte lateral em itálico
                 >
                   seguro.
                 </motion.span>
@@ -82,7 +83,7 @@ const Hero: React.FC = () => {
             >
               <a 
                 href="#contact"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-stone-900 text-white rounded-full overflow-hidden transition-all hover:pr-12"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-stone-900 text-white rounded-full overflow-hidden transition-all hover:pr-12 shadow-lg hover:shadow-xl"
               >
                 <span className="relative z-10 text-xs font-bold uppercase tracking-widest">Agendar Sessão</span>
                 <span className="absolute right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 z-10">
