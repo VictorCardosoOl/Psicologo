@@ -5,16 +5,25 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Garante que o scroll pare antes do header fixo cobrir o título */
+    scroll-padding-top: 100px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   
   body {
     @apply bg-stone-50 text-stone-800;
   }
 
+  /* Tipografia Editorial Padrão */
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-tight text-stone-900;
+  }
+
+  /* Ajuste para parágrafos longos terem leitura confortável */
+  p {
+    @apply leading-relaxed;
   }
 }
 
@@ -29,5 +38,10 @@
   
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Utilitário para animação de texto suave */
+  .reveal-text {
+    animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 }

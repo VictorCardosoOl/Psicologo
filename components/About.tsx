@@ -6,21 +6,24 @@ const About: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <section id="about" className="py-24 bg-white">
+    <section id="about" className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
           {/* Content (Left) */}
-          <div className="lg:col-span-7 space-y-8">
-            <h2 className="text-sm font-bold text-primary-600 uppercase tracking-widest mb-1">Quem Sou Eu</h2>
-            <h3 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6">
-              Luiz Felipe Braziliano De Oliveira
-            </h3>
+          <div className="lg:col-span-7 space-y-10">
+            <div>
+                <h2 className="text-xs font-bold text-primary-600 uppercase tracking-[0.2em] mb-4">O Profissional</h2>
+                <h3 className="text-4xl md:text-5xl font-serif font-medium text-stone-900 mb-2">
+                Luiz Felipe Braziliano
+                </h3>
+                <p className="text-stone-400 font-serif italic text-xl">Psicólogo Clínico</p>
+            </div>
             
-            <div className="prose prose-lg text-slate-600 leading-relaxed">
+            <div className="text-lg text-stone-600 leading-relaxed font-light space-y-6">
               <p>
-                Acredito que a terapia deve ser mais do que apenas um desabafo; deve ser um espaço de construção. 
-                Sou formado em Psicologia pela Uninove (2021) e pós-graduando em Terapia Cognitivo-Comportamental pelo CETCC, uma das principais referências na área.
+                A terapia é muito mais do que apenas desabafo; é um espaço de <span className="text-stone-900 font-medium">construção e transformação</span>. 
+                Sou formado em Psicologia pela Uninove (2021) e pós-graduando em Terapia Cognitivo-Comportamental (TCC) pelo CETCC, uma das principais referências na área.
               </p>
               <p>
                 Minha atuação é voltada para adolescentes, adultos e idosos, com foco em ansiedade, depressão, regulação emocional e transtornos alimentares.
@@ -32,13 +35,14 @@ const About: React.FC = () => {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    className="overflow-hidden space-y-4"
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="overflow-hidden space-y-6"
                   >
                     <p>
-                       Valorizo atividades que me ajudam a manter equilíbrio emocional, físico e mental, o que também enriquece minha prática clínica. Entre elas estão atividades físicas, leituras, filmes e documentários que ampliam minha visão de mundo.
+                       Minha missão é desmistificar a psicologia e oferecer ferramentas práticas para que cada paciente possa se tornar, eventualmente, seu próprio terapeuta. Acredito na autonomia e no poder de transformação através do autoconhecimento guiado por evidências.
                     </p>
                     <p>
-                       Minha missão é desmistificar a psicologia e oferecer ferramentas práticas para que cada paciente possa se tornar, eventualmente, seu próprio terapeuta. Acredito na autonomia e no poder de transformação através do autoconhecimento guiado por evidências.
+                       Valorizo atividades que me ajudam a manter equilíbrio emocional, físico e mental, como atividades físicas, leituras, filmes e documentários que ampliam minha visão de mundo, o que também enriquece e embasa minha prática clínica.
                     </p>
                   </motion.div>
                 )}
@@ -47,41 +51,50 @@ const About: React.FC = () => {
 
             <button 
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex items-center gap-2 text-primary-700 font-bold hover:text-primary-800 transition-colors"
+              className="group flex items-center gap-2 text-stone-900 text-sm font-bold uppercase tracking-wider hover:text-primary-600 transition-colors pt-4"
             >
               {isExpanded ? 'Ler menos' : 'Conhecer minha história completa'}
-              {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              {isExpanded ? 
+                <ChevronUp size={16} className="group-hover:-translate-y-1 transition-transform" /> : 
+                <ChevronDown size={16} className="group-hover:translate-y-1 transition-transform" />
+              }
             </button>
 
-            {/* Credentials */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-slate-100">
-               <div className="flex flex-col items-center text-center p-4 bg-slate-50 rounded-xl">
-                  <Award className="text-primary-600 mb-3" size={28} />
-                  <span className="font-bold text-slate-800 text-sm">CRP 06/181948</span>
-                  <span className="text-xs text-slate-500">Psicólogo Clínico</span>
+            {/* Credentials - Minimalist */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 border-t border-stone-100">
+               <div className="p-6 bg-stone-50 rounded-2xl hover:bg-stone-100 transition-colors">
+                  <Award className="text-stone-400 mb-4" size={24} strokeWidth={1.5} />
+                  <div className="font-serif font-bold text-stone-900 text-lg">CRP 06/181948</div>
+                  <div className="text-xs text-stone-500 uppercase tracking-wider mt-1">Psicólogo Clínico</div>
                </div>
-               <div className="flex flex-col items-center text-center p-4 bg-slate-50 rounded-xl">
-                  <GraduationCap className="text-primary-600 mb-3" size={28} />
-                  <span className="font-bold text-slate-800 text-sm">Pós-Graduando</span>
-                  <span className="text-xs text-slate-500">TCC pelo CETCC</span>
+               <div className="p-6 bg-stone-50 rounded-2xl hover:bg-stone-100 transition-colors">
+                  <GraduationCap className="text-stone-400 mb-4" size={24} strokeWidth={1.5} />
+                  <div className="font-serif font-bold text-stone-900 text-lg">Especialista</div>
+                  <div className="text-xs text-stone-500 uppercase tracking-wider mt-1">Pós em TCC pelo CETCC</div>
                </div>
-               <div className="flex flex-col items-center text-center p-4 bg-slate-50 rounded-xl">
-                  <BookOpen className="text-primary-600 mb-3" size={28} />
-                  <span className="font-bold text-slate-800 text-sm">Uninove</span>
-                  <span className="text-xs text-slate-500">Formado em 2021</span>
+               <div className="p-6 bg-stone-50 rounded-2xl hover:bg-stone-100 transition-colors">
+                  <BookOpen className="text-stone-400 mb-4" size={24} strokeWidth={1.5} />
+                  <div className="font-serif font-bold text-stone-900 text-lg">Uninove</div>
+                  <div className="text-xs text-stone-500 uppercase tracking-wider mt-1">Bacharelado 2021</div>
                </div>
             </div>
           </div>
 
           {/* Image (Right) */}
-          <div className="lg:col-span-5 relative">
-              <div className="absolute inset-0 bg-primary-100 rounded-2xl transform translate-x-4 translate-y-4"></div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="lg:col-span-5 relative"
+          >
+              <div className="absolute inset-0 bg-stone-100 rounded-[2rem] transform translate-x-4 translate-y-4 -z-10"></div>
               <img 
                 src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=800&auto=format&fit=crop" 
                 alt="Luiz Felipe no escritório" 
-                className="relative rounded-2xl shadow-xl w-full h-auto object-cover"
+                className="relative rounded-[2rem] shadow-xl w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-1000"
               />
-          </div>
+          </motion.div>
 
         </div>
       </div>

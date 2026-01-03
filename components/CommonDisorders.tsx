@@ -1,140 +1,142 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ArrowDown, Activity, BrainCircuit, Battery, CloudRain, AlertCircle } from 'lucide-react';
+import { ArrowDown, Activity, BrainCircuit, Battery, CloudRain, AlertCircle, ArrowRight } from 'lucide-react';
 import { scenarios } from '../data';
 
 const CommonDisorders: React.FC = () => {
-  const [selectedId, setSelectedId] = useState<string | null>('anxiety');
+  // Estado inicial null garante que todos comecem minimizados
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const toggleOpen = (id: string) => {
+    // Se clicar no já aberto, fecha (null). Se clicar em outro, abre o novo.
     setSelectedId(selectedId === id ? null : id);
   };
 
-  // Helper para ícones grandes e estilizados na área expandida
   const getIcon = (id: string) => {
     switch(id) {
-        case 'anxiety': return <BrainCircuit size={64} strokeWidth={1} />;
-        case 'panic': return <Activity size={64} strokeWidth={1} />;
-        case 'depression': return <CloudRain size={64} strokeWidth={1} />;
-        case 'burnout': return <Battery size={64} strokeWidth={1} />;
-        default: return <AlertCircle size={64} strokeWidth={1} />;
+        case 'anxiety': return <BrainCircuit size={48} strokeWidth={1} />;
+        case 'panic': return <Activity size={48} strokeWidth={1} />;
+        case 'depression': return <CloudRain size={48} strokeWidth={1} />;
+        case 'burnout': return <Battery size={48} strokeWidth={1} />;
+        default: return <AlertCircle size={48} strokeWidth={1} />;
     }
   };
 
   return (
-    <section id="sinais" className="py-24 bg-stone-100">
+    <section id="sinais" className="py-24 bg-stone-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header da Seção */}
-        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-           <div className="max-w-2xl">
-                <h2 className="text-sm font-bold text-primary-600 uppercase tracking-widest mb-3">Identificação</h2>
-                <h3 className="text-3xl md:text-5xl font-serif font-medium text-stone-900 leading-tight">
+        {/* Cabeçalho da Seção */}
+        <div className="mb-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+           <div className="md:col-span-8">
+                <h2 className="text-xs font-bold text-primary-600 uppercase tracking-[0.2em] mb-4">Identificação de Sintomas</h2>
+                <h3 className="text-4xl md:text-6xl font-serif font-medium text-stone-900 leading-[1.1]">
                     O que sua mente diz?
                 </h3>
            </div>
-           <p className="text-stone-500 max-w-sm text-sm md:text-right">
-             Clique na frase que mais ressoa com o seu momento atual para entender o que pode estar acontecendo.
-           </p>
+           <div className="md:col-span-4 text-stone-500 text-sm leading-relaxed md:text-right font-medium">
+             <p>Abaixo estão frases comuns de quem busca ajuda.</p>
+             <p>Clique para expandir e entender o contexto.</p>
+           </div>
         </div>
 
-        {/* Lista estilo K-News */}
+        {/* Lista Accordion Editorial - Linha Superior Mestra */}
         <div className="border-t border-stone-300">
-          {scenarios.map((scenario) => {
+          {scenarios.map((scenario, index) => {
             const isOpen = selectedId === scenario.id;
+            const itemNumber = (index + 1).toString().padStart(2, '0');
 
             return (
-              <div key={scenario.id} className="border-b border-stone-300 transition-colors duration-500 hover:bg-stone-50">
+              <div key={scenario.id} className="border-b border-stone-300 group">
                 
-                {/* Cabeçalho do Item (Sempre visível) */}
+                {/* Botão Gatilho (Trigger) - Sempre visível */}
                 <button
                   onClick={() => toggleOpen(scenario.id)}
-                  className="w-full py-8 md:py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-left group focus:outline-none"
+                  className="w-full py-10 flex items-start md:items-center justify-between gap-6 text-left focus:outline-none transition-all duration-300 hover:bg-stone-100/50"
                 >
-                  <div className="flex items-center gap-6 md:gap-12 flex-1">
-                    {/* Indicador de Status (Círculo) */}
-                    <div className="hidden md:flex items-center justify-center w-6 h-6">
-                        <div className={`w-3 h-3 rounded-full transition-all duration-300 ${isOpen ? 'bg-stone-900 scale-125' : 'border border-stone-400 group-hover:bg-stone-400'}`}></div>
+                  <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12 flex-1">
+                    
+                    {/* Coluna 1: Indicadores (Número e Status) */}
+                    <div className="flex items-center gap-4 min-w-[100px]">
+                        <span className={`text-sm font-bold tracking-wider transition-colors duration-300 ${isOpen ? 'text-primary-600' : 'text-stone-300 group-hover:text-stone-400'}`}>
+                            {itemNumber}
+                        </span>
+                        <div className={`h-px flex-1 transition-all duration-500 ${isOpen ? 'bg-primary-600 w-8' : 'bg-stone-300 w-0 group-hover:w-4'}`}></div>
                     </div>
 
-                    {/* Label Pequeno (Data/Categoria no original) */}
-                    <span className="text-xs font-bold text-stone-400 uppercase tracking-widest w-24 flex-shrink-0">
-                      Sinal #{scenario.id.substring(0, 3)}
-                    </span>
-
-                    {/* Frase Principal */}
-                    <h4 className={`text-xl md:text-3xl font-serif transition-colors duration-300 ${isOpen ? 'text-primary-800' : 'text-stone-800 group-hover:text-stone-600'}`}>
-                      "{scenario.triggerPhrase}"
+                    {/* Coluna 2: A Pergunta/Frase (Texto Principal) */}
+                    <h4 className={`text-xl md:text-3xl font-serif font-medium leading-tight transition-colors duration-300 ${isOpen ? 'text-stone-900' : 'text-stone-500 group-hover:text-stone-800'}`}>
+                      {scenario.triggerPhrase}
                     </h4>
                   </div>
 
-                  {/* Seta */}
-                  <div className="pl-4 md:pl-0 self-end md:self-center">
-                    <ArrowDown 
-                        size={24} 
-                        className={`text-stone-400 transition-transform duration-500 ${isOpen ? 'rotate-180 text-primary-600' : 'group-hover:translate-y-1'}`} 
-                    />
+                  {/* Coluna 3: Ícone de Ação (Seta) */}
+                  <div className={`relative w-12 h-12 flex items-center justify-center rounded-full border transition-all duration-300 ml-4 shrink-0
+                      ${isOpen ? 'border-stone-900 bg-stone-900 text-white rotate-180' : 'border-stone-300 text-stone-400 group-hover:border-stone-900 group-hover:text-stone-900'}`}
+                  >
+                    <ArrowDown size={20} strokeWidth={1.5} />
                   </div>
                 </button>
 
-                {/* Conteúdo Expandido */}
+                {/* Área de Conteúdo Expandido (Gaveta) */}
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} // Curva Bezier para movimento "premium"
                       className="overflow-hidden"
                     >
-                      <div className="pb-12 pt-4 pl-0 md:pl-[calc(6rem+24px)] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                      <div className="pb-16 pt-2 pl-0 md:pl-[calc(100px+3rem)] grid grid-cols-1 lg:grid-cols-12 gap-12">
                         
-                        {/* Texto Explicativo */}
-                        <div className="space-y-6">
+                        {/* Conteúdo Textual */}
+                        <div className="lg:col-span-7 space-y-8 pr-4">
                             <div>
-                                <h5 className="text-sm font-bold text-stone-400 uppercase tracking-wider mb-2">Quadro Provável</h5>
-                                <h2 className="text-3xl font-serif text-stone-900 mb-6">{scenario.disorderName}</h2>
-                                <p className="text-lg text-stone-600 leading-relaxed font-light border-l-2 border-primary-200 pl-6">
+                                <div className="inline-flex items-center gap-2 mb-4">
+                                    <span className={`w-2 h-2 rounded-full ${scenario.colorClass.replace('text-', 'bg-')}`}></span>
+                                    <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Diagnóstico Possível</span>
+                                </div>
+                                <h2 className="text-4xl font-serif text-stone-900 mb-6">{scenario.disorderName}</h2>
+                                <p className="text-lg text-stone-600 leading-relaxed font-light">
                                     {scenario.description}
                                 </p>
                             </div>
 
-                            <div className="bg-white p-6 rounded-xl border border-stone-100 shadow-sm">
-                                <h6 className="font-bold text-stone-900 mb-2 text-sm flex items-center gap-2">
-                                    <BrainCircuit size={16} className="text-primary-600" />
-                                    Como a TCC atua:
+                            <div className="bg-white p-8 border-l-2 border-stone-200">
+                                <h6 className="font-bold text-stone-900 mb-3 text-sm flex items-center gap-2">
+                                    <BrainCircuit size={18} className="text-primary-600" />
+                                    Abordagem da Terapia:
                                 </h6>
-                                <p className="text-stone-500 text-sm leading-relaxed">
+                                <p className="text-stone-500 text-base leading-relaxed">
                                     {scenario.tccApproach}
                                 </p>
                             </div>
 
-                            <div className="pt-4">
-                                <a 
-                                    href="https://wa.me/5511999998888"
-                                    className="inline-flex items-center gap-3 px-8 py-3 rounded-full border border-stone-900 text-stone-900 font-bold hover:bg-stone-900 hover:text-white transition-all duration-300 group/btn"
-                                >
-                                    Agendar Avaliação
-                                    <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                                </a>
-                            </div>
+                            <a 
+                                href="https://wa.me/5511999998888"
+                                className="inline-flex items-center gap-3 text-stone-900 font-bold hover:text-primary-600 transition-colors group/link mt-4"
+                            >
+                                <span className="border-b border-stone-900 group-hover/link:border-primary-600 pb-0.5">Agendar conversa sobre isso</span>
+                                <ArrowRight size={18} className="group-hover/link:translate-x-1 transition-transform" />
+                            </a>
                         </div>
 
-                        {/* Elemento Visual (Imagem/Icone Lado Direito) */}
-                        <div className="relative h-64 lg:h-80 w-full rounded-2xl overflow-hidden group/img cursor-pointer">
-                            {/* Fundo com Gradiente/Cor baseada no tipo */}
-                            <div className={`absolute inset-0 ${scenario.bgClass.replace('bg-', 'bg-gradient-to-br from-white to-')} opacity-50`}></div>
-                            
-                            {/* Imagem Placeholder Decorativa (abstrata para manter elegância) */}
-                            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-
-                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 transition-transform duration-700 group-hover/img:scale-105">
-                                <div className={`p-6 rounded-full bg-white shadow-soft mb-6 ${scenario.colorClass}`}>
-                                    {getIcon(scenario.id)}
+                        {/* Card Visual (Imagem/Ícone) */}
+                        <div className="lg:col-span-5 h-full min-h-[300px]">
+                            <div className={`h-full w-full rounded-none md:rounded-tl-[4rem] relative overflow-hidden group/card ${scenario.bgClass}`}>
+                                {/* Overlay Gradiente */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent z-10"></div>
+                                
+                                {/* Ícone Central */}
+                                <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
+                                    <div className={`p-8 bg-white/80 backdrop-blur-sm shadow-soft rounded-full mb-6 ${scenario.colorClass} transition-transform duration-700 group-hover/card:scale-110`}>
+                                        {getIcon(scenario.id)}
+                                    </div>
                                 </div>
-                                <p className="text-stone-500 text-sm font-medium uppercase tracking-widest">
-                                    Identificação Clínica
-                                </p>
+
+                                {/* Textura de Fundo (Simulada) */}
+                                <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]"></div>
                             </div>
                         </div>
 
