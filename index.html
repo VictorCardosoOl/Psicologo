@@ -1,106 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Luiz Felipe Braziliano | Psicólogo Clínico - TCC</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              serif: ['Playfair Display', 'serif'],
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luiz Felipe Braziliano | Psicólogo Clínico - TCC</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            primary: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              300: '#7ccbfd',
+              400: '#36b2fa',
+              500: '#0c99eb',
+              600: '#007bc2',
+              700: '#01629d',
+              800: '#065486',
+              900: '#0b456e',
             },
-            colors: {
-              primary: {
-                50: '#f0f7ff',
-                100: '#e0effe',
-                200: '#bae0fd',
-                300: '#7ccbfd',
-                400: '#36b2fa',
-                500: '#0c99eb',
-                600: '#007bc2',
-                700: '#01629d',
-                800: '#065486',
-                900: '#0b456e',
-              },
-              stone: {
-                50: '#fafaf9',
-                100: '#f5f5f4',
-                200: '#e7e5e4',
-                300: '#d6d3d1',
-                400: '#a8a29e',
-                500: '#78716c',
-                600: '#57534e',
-                700: '#44403c',
-                800: '#292524',
-                900: '#1c1917',
-              }
-            },
-            animation: {
-              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-              'blob': 'blob 7s infinite',
-            },
-            keyframes: {
-              fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              blob: {
-                '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                '100%': { transform: 'translate(0px, 0px) scale(1)' },
-              }
-            },
-            boxShadow: {
-              'soft': '0 10px 40px -10px rgba(0,0,0,0.05)',
-              'glow': '0 0 20px rgba(12, 153, 235, 0.3)',
+            stone: {
+              50: '#fafaf9',
+              100: '#f5f5f4',
+              200: '#e7e5e4',
+              300: '#d6d3d1',
+              400: '#a8a29e',
+              500: '#78716c',
+              600: '#57534e',
+              700: '#44403c',
+              800: '#292524',
+              900: '#1c1917',
             }
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            'blob': 'blob 7s infinite',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            }
+          },
+          boxShadow: {
+            'soft': '0 10px 40px -10px rgba(0,0,0,0.05)',
+            'glow': '0 0 20px rgba(12, 153, 235, 0.3)',
           }
         }
       }
-    </script>
-    <style>
-      body {
-        scroll-behavior: smooth;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-      .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-      }
-      .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-      }
-      /* Ensure full height for sticky footer if needed */
-      #root {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^11.0.28"
-  }
-}
-</script>
+    }
+  </script>
+  <style>
+    body {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Ensure full height for sticky footer if needed */
+    #root {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+
 </head>
-  <body class="bg-stone-50 text-stone-900 font-sans antialiased selection:bg-primary-200 selection:text-primary-900 overflow-x-hidden">
-    <div id="root"></div>
-    <!-- CRITICAL FIX: Entry point script needed for React to mount -->
-    <script type="module" src="./index.tsx"></script>
-  </body>
+
+<body
+  class="bg-stone-50 text-stone-900 font-sans antialiased selection:bg-primary-200 selection:text-primary-900 overflow-x-hidden">
+  <div id="root"></div>
+  <!-- CRITICAL FIX: Entry point script needed for React to mount -->
+  <script type="module" src="./index.tsx"></script>
+</body>
+
 </html>
