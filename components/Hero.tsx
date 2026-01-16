@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="block italic font-light text-stone-600 pl-1"
+                className="block italic font-light text-stone-700 pl-1"
               >
                 seguro.
               </motion.span>
@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-base text-stone-600 max-w-lg leading-relaxed mb-8 font-light space-y-3"
+            className="text-base text-stone-700 max-w-lg leading-relaxed mb-8 font-light space-y-3"
           >
             <p>
               Sou <strong>Luiz Felipe Braziliano de Oliveira</strong>, psicólogo clínico (CRP 06/181948).
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
             <p>
               Através da Terapia Cognitivo-Comportamental (TCC), ajudo você a entender seus padrões e construir caminhos mais saudáveis para lidar com os desafios.
             </p>
-            <p className="font-medium text-stone-800 italic text-sm">
+            <p className="font-medium text-stone-900 italic text-sm">
               O primeiro passo para a mudança é a decisão de não ficar como está.
             </p>
           </motion.div>
@@ -111,8 +111,8 @@ const Hero: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* LADO DIREITO: Imagem Full Height */}
-      <div className="w-full lg:w-[45%] h-[35vh] lg:h-full relative order-1 lg:order-2 bg-stone-200">
+      {/* LADO DIREITO: Imagem Full Height OTIMIZADA */}
+      <div className="w-full lg:w-[45%] h-[40vh] lg:h-full relative order-1 lg:order-2 bg-stone-200">
         <motion.div style={{ y: yImage }} className="w-full h-[120%] relative -top-[10%]">
           <img
             src={heroImg}
@@ -136,7 +136,7 @@ const Hero: React.FC = () => {
                 <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
                 <text className="font-serif text-[10px] font-medium uppercase tracking-[0.18em] fill-stone-800">
                   <textPath href="#circlePath" startOffset="0%">
-                    • Psicoterapia • Terapia Cognitivo Comportamental
+                    • Psicoterapia Baseada em Evidências •
                   </textPath>
                 </text>
               </svg>

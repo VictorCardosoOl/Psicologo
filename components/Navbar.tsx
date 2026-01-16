@@ -25,9 +25,9 @@ const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed w-full z-50 transition-all duration-500 ease-in-out ${scrolled
-            ? 'bg-white/85 backdrop-blur-md border-b border-stone-200/50 py-3 shadow-sm'
-            : 'bg-transparent py-6'
+        className={`fixed w-full z-[100] transition-all duration-300 ease-in-out ${scrolled
+          ? 'bg-white border-b border-stone-200 py-3 shadow-md'
+          : 'bg-transparent py-6'
           }`}
       >
         <div className="max-w-screen-2xl mx-auto px-6 sm:px-8 lg:px-12 flex justify-between items-center">
@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
             </div>
             <div>
               <h1 className="font-serif text-xl font-bold text-stone-900 leading-none tracking-tight group-hover:text-primary-700 transition-colors">Luiz Felipe</h1>
-              <p className="text-[10px] text-stone-500 font-bold uppercase tracking-[0.2em] mt-1">Psicoterapia</p>
+              <p className="text-[10px] text-stone-600 font-bold uppercase tracking-[0.2em] mt-1">Psicoterapia</p>
             </div>
           </div>
 
@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-xs font-bold uppercase tracking-widest text-stone-600 hover:text-stone-900 transition-colors relative after:content-[''] after:absolute after:w-0 after:h-px after:bg-stone-900 after:left-0 after:-bottom-1 after:transition-all duration-300 hover:after:w-full"
+                  className="text-xs font-bold uppercase tracking-widest text-stone-700 hover:text-stone-900 transition-colors relative after:content-[''] after:absolute after:w-0 after:h-px after:bg-stone-900 after:left-0 after:-bottom-1 after:transition-all duration-300 hover:after:w-full"
                 >
                   {link.label}
                 </a>
