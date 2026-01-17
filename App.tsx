@@ -6,7 +6,7 @@ import Methodology from './components/Methodology';
 import About from './components/About';
 import Services from './components/Services';
 import FAQ from './components/FAQ';
-import Contact from './components/Contact';
+
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/ChatWidget';
 import { motion } from 'framer-motion';
@@ -15,7 +15,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-900 transition-all duration-300 selection:bg-primary-100 selection:text-primary-900">
       <Navbar />
-      
+
       <main className="relative">
         <motion.div
           initial={{ opacity: 0 }}
@@ -24,25 +24,24 @@ const App: React.FC = () => {
         >
           {/* 1. Apresentação (Hero) */}
           <Hero />
-          
+
           {/* 2. Sinais de Alerta (Sintomas) */}
           <CommonDisorders />
-          
+
           {/* 3. Metodologia TCC & Como funciona a psicoterapia */}
           <Methodology />
-          
+
           {/* 4. Sobre Mim */}
           <About />
-          
+
           {/* 5. Serviços */}
           <Services />
-          
-          {/* 6. Fluxo final (FAQ e Contato) */}
+
+          {/* 6. Fluxo final (FAQ) */}
           <FAQ />
-          <Contact />
         </motion.div>
       </main>
-      
+
       <Footer />
       <WhatsAppFloat />
     </div>
