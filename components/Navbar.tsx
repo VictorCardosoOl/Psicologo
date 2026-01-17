@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
 
             {/* Schedule Button */}
             <a
-              href="https://wa.me/5511999998888"
+              href="https://wa.me/5511976168339?text=Olá%20Felipe%2C%20tudo%20bem%3F%0APara%20qual%20data%20possui%20disponibilidade%20de%20agendamento%3F"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-stone-900 hover:bg-stone-800 text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg shadow-stone-900/10 transition-all hover:-translate-y-0.5 active:translate-y-0"
@@ -158,7 +158,7 @@ const Navbar: React.FC = () => {
                   ))} */}
 
                 <a
-                  href="https://wa.me/5511999998888"
+                  href="https://wa.me/5511976168339?text=Olá%20Felipe%2C%20tudo%20bem%3F%0APara%20qual%20data%20possui%20disponibilidade%20de%20agendamento%3F"
                   className="block w-full bg-stone-900 text-white text-center py-5 rounded-2xl font-bold mt-6 text-sm uppercase tracking-wide"
                 >
                   Agendar via WhatsApp

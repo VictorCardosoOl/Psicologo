@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
               <h3 className="text-stone-100 font-serif text-xl mb-6">Canais de Contato</h3>
               <div className="space-y-4">
                 <a
-                  href="https://wa.me/5511999998888"
+                  href="https://wa.me/5511976168339?text=Olá%20Felipe%2C%20tudo%20bem%3F%0APara%20qual%20data%20possui%20disponibilidade%20de%20agendamento%3F"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center justify-between p-4 rounded-xl bg-stone-900 border border-stone-800 hover:border-primary-900/50 hover:bg-stone-800 transition-all cursor-pointer"
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
                     </div>
                     <span className="text-stone-300 font-medium group-hover:text-white transition-colors">Agendar via WhatsApp</span>
                   </div>
-                  <span className="text-sm text-stone-500">(11) 99999-8888</span>
+                  <span className="text-sm text-stone-500">(11) 97616-8339</span>
                 </a>
 
                 <a

@@ -3,7 +3,7 @@ import React from 'react';
 const WhatsAppFloat: React.FC = () => {
   return (
     <a
-      href="https://wa.me/551126091029?text=Olá%20Wise%20System"
+      href="https://wa.me/5511976168339?text=Olá%20Felipe%2C%20tudo%20bem%3F%0APara%20qual%20data%20possui%20disponibilidade%20de%20agendamento%3F"
       style={{
         position: 'fixed',
         width: '60px',

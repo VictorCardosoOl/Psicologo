@@ -7,19 +7,19 @@ const AnxietySection: React.FC = () => {
   return (
     <section id="anxiety" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div
-             initial={{ opacity: 0, y: 20 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
             <h2 className="text-sm font-bold text-sage-600 uppercase tracking-widest mb-2">Identificando Sintomas</h2>
             <h3 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6">
               Você não precisa carregar o peso da ansiedade sozinho.
             </h3>
             <p className="text-slate-600 text-lg leading-relaxed">
-              A ansiedade se manifesta de formas diferentes para cada pessoa. 
+              A ansiedade se manifesta de formas diferentes para cada pessoa.
               Identificar os sinais é o primeiro passo para retomar o controle.
             </p>
           </motion.div>
@@ -36,7 +36,7 @@ const AnxietySection: React.FC = () => {
               className="group relative h-80 perspective"
             >
               <div className="absolute inset-0 bg-sand-50 rounded-2xl p-8 transition-all duration-500 group-hover:bg-sage-600 border border-sand-200 group-hover:border-sage-600 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-xl overflow-hidden">
-                
+
                 {/* Default State */}
                 <div className="group-hover:opacity-0 group-hover:-translate-y-10 transition-all duration-500 absolute inset-0 flex flex-col items-center justify-center p-6">
                   <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-sage-600 mb-6 shadow-sm">
@@ -69,20 +69,20 @@ const AnxietySection: React.FC = () => {
 
         {/* Mini Quiz CTA */}
         <div className="mt-16 text-center">
-           <motion.div 
-             whileHover={{ scale: 1.02 }}
-             className="inline-block p-1 bg-gradient-to-r from-sage-200 to-sand-200 rounded-full"
-           >
-             <a 
-                href="https://wa.me/5511999998888"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3 bg-white rounded-full text-slate-700 font-medium hover:bg-slate-50 transition-colors flex items-center gap-2"
-             >
-               <MessageCircle size={18} className="text-green-600" />
-               Não tem certeza do que sente? Fale comigo no WhatsApp
-             </a>
-           </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="inline-block p-1 bg-gradient-to-r from-sage-200 to-sand-200 rounded-full"
+          >
+            <a
+              href="https://wa.me/5511976168339?text=Olá%20Felipe%2C%20tudo%20bem%3F%0APara%20qual%20data%20possui%20disponibilidade%20de%20agendamento%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 bg-white rounded-full text-slate-700 font-medium hover:bg-slate-50 transition-colors flex items-center gap-2"
+            >
+              <MessageCircle size={18} className="text-green-600" />
+              Não tem certeza do que sente? Fale comigo no WhatsApp
+            </a>
+          </motion.div>
         </div>
 
       </div>
