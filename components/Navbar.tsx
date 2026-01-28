@@ -1,15 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, MessageCircle, BrainCircuit } from 'lucide-react';
 import { navLinks } from '../data';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      const currentScrollY = window.scrollY;
+
+      // Logic for visibility (Hide on scroll down, show on scroll up)
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      setScrolled(currentScrollY > 10);
+      lastScrollY.current = currentScrollY;
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -17,9 +30,10 @@ const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed w-full z-[100] transition-all duration-300 ease-in-out ${scrolled
-          ? 'bg-white border-b border-stone-200 py-3 shadow-md'
-          : 'bg-transparent py-6'
+        className={`fixed w-full z-[100] transition-all duration-300 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'
+          } ${scrolled
+            ? 'bg-white border-b border-stone-200 py-3 shadow-md'
+            : 'bg-transparent py-6'
           }`}
       >
         <div className="max-w-screen-2xl mx-auto px-6 sm:px-8 lg:px-12 flex justify-between items-center">
