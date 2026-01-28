@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Sun, Shield, Users, Compass } from 'lucide-react';
 
 const TherapyImpact: React.FC = () => {
@@ -29,7 +28,7 @@ const TherapyImpact: React.FC = () => {
   return (
     <section className="py-24 bg-white border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-4">
             O que mudará em sua vida?
@@ -41,17 +40,16 @@ const TherapyImpact: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {pillars.map((p, i) => (
-            <motion.div 
+            <div
               key={i}
-              whileHover={{ y: -10 }}
-              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 text-center hover:shadow-lg transition-all"
+              className="bg-slate-50 p-8 rounded-2xl border border-slate-100 text-center hover:shadow-lg transition-all hover:-translate-y-2 duration-300"
             >
-               <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
-                 {p.icon}
-               </div>
-               <h3 className="font-bold text-lg text-slate-800 mb-3">{p.title}</h3>
-               <p className="text-slate-600 text-sm leading-relaxed">{p.desc}</p>
-            </motion.div>
+              <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
+                {p.icon}
+              </div>
+              <h3 className="font-bold text-lg text-slate-800 mb-3">{p.title}</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">{p.desc}</p>
+            </div>
           ))}
         </div>
 

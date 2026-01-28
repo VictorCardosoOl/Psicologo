@@ -4,11 +4,23 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: initial; /* Lenis controls scroll */
     scroll-padding-top: 120px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
   }
   
   body {

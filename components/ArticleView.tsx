@@ -1,7 +1,6 @@
 import React from 'react';
 import { BlogPost } from '../types';
 import { Calendar, Clock, ArrowLeft, MessageCircle } from 'lucide-react';
-import { motion, useScroll, useSpring } from 'framer-motion';
 
 interface ArticleViewProps {
   article: BlogPost;
@@ -9,15 +8,10 @@ interface ArticleViewProps {
 }
 
 const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack }) => {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-
   return (
     <article className="min-h-screen bg-white pt-24 pb-32">
-      <motion.div className="fixed top-20 left-0 right-0 h-1 bg-primary-600 origin-left z-40" style={{ scaleX }} />
-
       <div className="max-w-3xl mx-auto px-4 sm:px-6 relative">
-        <button 
+        <button
           onClick={onBack}
           className="mb-8 flex items-center gap-2 text-slate-500 hover:text-primary-700 font-bold transition-colors"
         >
@@ -37,20 +31,20 @@ const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack }) => {
           </div>
         </header>
 
-        <div 
+        <div
           className="prose prose-lg prose-slate prose-headings:font-serif prose-headings:text-slate-900 prose-a:text-primary-600"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
 
         {/* CTA Next Step */}
         <div className="mt-16 bg-slate-900 text-white p-8 rounded-2xl text-center">
-           <h3 className="text-2xl font-serif font-bold mb-4">Gostou do conteúdo?</h3>
-           <p className="text-slate-300 mb-8 max-w-lg mx-auto">
-             Ler sobre o assunto é o primeiro passo. Vamos aplicar isso juntos na sua vida?
-           </p>
-           <a href="#contact" className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 px-8 py-3 rounded-xl font-bold transition-colors">
-             <MessageCircle size={20} /> Agendar uma sessão
-           </a>
+          <h3 className="text-2xl font-serif font-bold mb-4">Gostou do conteúdo?</h3>
+          <p className="text-slate-300 mb-8 max-w-lg mx-auto">
+            Ler sobre o assunto é o primeiro passo. Vamos aplicar isso juntos na sua vida?
+          </p>
+          <a href="#contact" className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 px-8 py-3 rounded-xl font-bold transition-colors">
+            <MessageCircle size={20} /> Agendar uma sessão
+          </a>
         </div>
       </div>
     </article>

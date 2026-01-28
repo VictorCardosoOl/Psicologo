@@ -9,19 +9,15 @@ import FAQ from './components/FAQ';
 
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/ChatWidget';
-import { motion } from 'framer-motion';
+import SmoothScrollLayout from './components/SmoothScrollLayout';
 
 const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-900 transition-all duration-300 selection:bg-primary-100 selection:text-primary-900">
       <Navbar />
 
-      <main className="relative">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
+      <SmoothScrollLayout>
+        <main className="relative">
           {/* 1. Apresentação (Hero) */}
           <Hero />
 
@@ -39,10 +35,10 @@ const App: React.FC = () => {
 
           {/* 6. Fluxo final (FAQ) */}
           <FAQ />
-        </motion.div>
-      </main>
+        </main>
+        <Footer />
+      </SmoothScrollLayout>
 
-      <Footer />
       <WhatsAppFloat />
     </div>
   );

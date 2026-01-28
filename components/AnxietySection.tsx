@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 import { anxietyTypes } from '../data';
 
@@ -9,11 +8,7 @@ const AnxietySection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <div>
             <h2 className="text-sm font-bold text-sage-600 uppercase tracking-widest mb-2">Identificando Sintomas</h2>
             <h3 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6">
               Você não precisa carregar o peso da ansiedade sozinho.
@@ -22,17 +17,13 @@ const AnxietySection: React.FC = () => {
               A ansiedade se manifesta de formas diferentes para cada pessoa.
               Identificar os sinais é o primeiro passo para retomar o controle.
             </p>
-          </motion.div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {anxietyTypes.map((item, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
               className="group relative h-80 perspective"
             >
               <div className="absolute inset-0 bg-sand-50 rounded-2xl p-8 transition-all duration-500 group-hover:bg-sage-600 border border-sand-200 group-hover:border-sage-600 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-xl overflow-hidden">
@@ -63,16 +54,13 @@ const AnxietySection: React.FC = () => {
                 </div>
 
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Mini Quiz CTA */}
         <div className="mt-16 text-center">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="inline-block p-1 bg-gradient-to-r from-sage-200 to-sand-200 rounded-full"
-          >
+          <div className="inline-block p-1 bg-gradient-to-r from-sage-200 to-sand-200 rounded-full hover:scale-105 transition-transform duration-300">
             <a
               href="https://wa.me/5511976168339?text=Olá%20Felipe%2C%20tudo%20bem%3F%0APara%20qual%20data%20possui%20disponibilidade%20de%20agendamento%3F"
               target="_blank"
@@ -82,7 +70,7 @@ const AnxietySection: React.FC = () => {
               <MessageCircle size={18} className="text-green-600" />
               Não tem certeza do que sente? Fale comigo no WhatsApp
             </a>
-          </motion.div>
+          </div>
         </div>
 
       </div>
