@@ -57,7 +57,7 @@ const Services: React.FC = () => {
                     <div className="reveal-header">
                         <a
                             href="#contact"
-                            className="hidden md:flex items-center gap-3 text-stone-500 text-sm font-bold uppercase tracking-wider hover:text-stone-900 transition-colors group border border-stone-200 px-6 py-3 rounded-full hover:bg-stone-50"
+                            className="flex items-center gap-3 text-stone-900 text-sm font-bold uppercase tracking-wider hover:text-primary-700 transition-colors group border border-stone-300 px-6 py-3 rounded-full hover:bg-stone-50"
                         >
                             Ver disponibilidade <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                         </a>

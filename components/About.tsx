@@ -39,12 +39,26 @@ const About: React.FC = () => {
         }
       });
 
-      // Image Parallax Effect
+      // Image Reveal (Opacity & Scale)
       gsap.fromTo(".image-parallax",
-        { yPercent: 10, opacity: 0 },
+        { opacity: 0, scale: 0.95 },
         {
-          yPercent: -10,
           opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".image-trigger",
+            start: "top 85%",
+          }
+        }
+      );
+
+      // Image Parallax (Movement only)
+      gsap.fromTo(".image-parallax",
+        { yPercent: 5 },
+        {
+          yPercent: -5,
           ease: "none",
           scrollTrigger: {
             trigger: ".image-trigger",
@@ -71,7 +85,7 @@ const About: React.FC = () => {
               <h3 className="reveal-text text-4xl md:text-5xl font-serif font-medium text-stone-900 mb-2">
                 Luiz Felipe Braziliano
               </h3>
-              <p className="reveal-text text-stone-400 font-serif italic text-xl">Psicólogo Clínico</p>
+              <p className="reveal-text text-stone-400 font-serif italic text-xl">Psicólogo Clínico - CRP 06/181948</p>
             </div>
 
             <div className="text-lg text-stone-600 leading-relaxed font-light space-y-6">
@@ -127,12 +141,12 @@ const About: React.FC = () => {
           </div>
 
           {/* Image (Right) */}
-          <div className="image-trigger lg:col-span-5 relative">
-            <div className="absolute inset-0 bg-stone-100 rounded-[2rem] transform translate-x-4 translate-y-4 -z-10"></div>
+          <div className="image-trigger lg:col-span-5 relative flex justify-center">
+            <div className="absolute inset-0 bg-stone-100 rounded-[2rem] transform translate-x-4 translate-y-4 -z-10 max-w-md mx-auto h-full"></div>
             <img
               src={aboutImg}
               alt="Luiz Felipe no escritório"
-              className="image-parallax relative rounded-[2rem] shadow-xl w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+              className="image-parallax relative rounded-[2rem] shadow-xl w-full max-w-md h-auto object-cover" // Removed grayscale, added max-w-md
             />
           </div>
 

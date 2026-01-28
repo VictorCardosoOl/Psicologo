@@ -36,17 +36,20 @@ const Methodology: React.FC = () => {
       });
 
       // Pillars Stagger
-      gsap.from(".pillar-item", {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: ".pillars-trigger",
-          start: "top 90%", // 85 -> 90
+      gsap.fromTo(".pillar-item",
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: ".pillars-trigger",
+            start: "top 95%",
+          }
         }
-      });
+      );
 
     }, containerRef);
     return () => ctx.revert();
