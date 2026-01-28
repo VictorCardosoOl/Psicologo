@@ -29,14 +29,14 @@ const BlogSection: React.FC<BlogSectionProps> = ({ onReadArticle }) => {
     const ctx = gsap.context(() => {
       // Header Reveal
       gsap.from(".reveal-header", {
-        y: 40,
+        y: 30,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        duration: 0.6,
+        stagger: 0.05,
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".blog-header",
-          start: "top 90%",
+          start: "top bottom", // Immediate
         }
       });
 
@@ -44,25 +44,25 @@ const BlogSection: React.FC<BlogSectionProps> = ({ onReadArticle }) => {
       gsap.from(".filter-btn", {
         scale: 0.8,
         opacity: 0,
-        duration: 0.5,
-        stagger: 0.05,
+        duration: 0.4,
+        stagger: 0.03,
         ease: "back.out(1.7)",
         scrollTrigger: {
           trigger: ".blog-header",
-          start: "top 90%",
+          start: "top bottom", // Immediate
         }
       });
 
       // Initial Grid Animation
       gsap.from(".blog-card", {
-        y: 60,
+        y: 40,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        duration: 0.6,
+        stagger: 0.05,
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".blog-grid",
-          start: "top 90%",
+          start: "top bottom", // Immediate
         }
       });
 

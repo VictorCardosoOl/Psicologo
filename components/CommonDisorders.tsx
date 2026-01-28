@@ -16,26 +16,26 @@ const CommonDisorders: React.FC = () => {
     const ctx = gsap.context(() => {
       // Header Animation
       gsap.from(".reveal-header", {
-        y: 50,
+        y: 30, // Reduced distance
         opacity: 0,
-        duration: 1,
+        duration: 0.6, // Faster
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".header-trigger",
-          start: "top 90%", // Was 80%
+          start: "top bottom", // Immediate trigger
         }
       });
 
       // List Items Animation
       gsap.from(".disorder-item", {
-        y: 30,
+        y: 20, // Reduced distance
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        duration: 0.5, // Faster
+        stagger: 0.05, // Tight stagger
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".list-trigger",
-          start: "top 90%", // Was 85%
+          start: "top bottom", // Immediate trigger
         }
       });
 

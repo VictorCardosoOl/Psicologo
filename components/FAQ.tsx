@@ -15,12 +15,12 @@ const FAQ: React.FC = () => {
       gsap.from(".faq-item", {
         y: 20,
         opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
+        duration: 0.5,
+        stagger: 0.05,
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".faq-list",
-          start: "top 90%", // 85 -> 90
+          start: "top bottom", // Immediate
         }
       });
     }, containerRef);

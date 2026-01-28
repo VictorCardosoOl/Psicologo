@@ -12,41 +12,41 @@ const Methodology: React.FC = () => {
     const ctx = gsap.context(() => {
       // Intro Reveal
       gsap.from(".reveal-text", {
-        y: 50,
+        y: 30,
         opacity: 0,
-        duration: 1,
-        stagger: 0.1,
+        duration: 0.8,
+        stagger: 0.05,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".intro-trigger",
-          start: "top 90%", // 80 -> 90
+          start: "top bottom", // Immediate
         }
       });
 
       // Right Card Parallax
       gsap.from(".card-parallax", {
-        x: 50,
+        x: 30,
         opacity: 0,
-        duration: 1.2,
+        duration: 1,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: ".intro-trigger", // Keep same trigger
-          start: "top 90%",
+          trigger: ".intro-trigger",
+          start: "top bottom", // Immediate
         }
       });
 
       // Pillars Stagger
       gsap.fromTo(".pillar-item",
-        { y: 40, opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
+          duration: 0.6,
+          stagger: 0.1,
           ease: "back.out(1.7)",
           scrollTrigger: {
             trigger: ".pillars-trigger",
-            start: "top 95%",
+            start: "top bottom", // Immediate
           }
         }
       );

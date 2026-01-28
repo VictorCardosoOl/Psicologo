@@ -147,22 +147,13 @@ const Hero: React.FC = () => {
             </a>
           </div>
         </div>
-      </div>
 
-      {/* LADO DIREITO: Imagem */}
-      <div className="w-full lg:w-[45%] h-[40vh] lg:h-full relative order-1 lg:order-2 bg-stone-200 overflow-hidden">
-        <div ref={imageRef} className="w-full h-[120%] relative -top-[10%]">
-          <img
-            src={heroImg}
-            alt="Psicólogo Luiz Felipe"
-            className="w-full h-full object-cover object-top"
-          />
-          <div className="absolute inset-0 bg-stone-900/10 mix-blend-multiply"></div>
-        </div>
-
-        {/* Badge Giratório */}
-        <div className="absolute bottom-[-1px] left-[-1px] lg:top-auto lg:bottom-16 lg:-left-20 z-30 hidden lg:block">
+        {/* Badge Giratório (Posicionado na div da esquerda para não ser cortado pelo overflow-hidden da direita) */}
+        <div className="absolute bottom-[-1px] left-[-1px] lg:bottom-16 lg:-right-20 z-30 hidden lg:block">
           <div className="relative w-40 h-40 flex items-center justify-center pointer-events-none">
+            {/* Círculo branco de fundo para contraste sobre a imagem */}
+            <div className="absolute inset-4 bg-[#FDFCFB] rounded-full blur-xl opacity-80"></div>
+
             <div ref={badgeRef} className="absolute inset-0 w-full h-full">
               <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
                 <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
@@ -175,9 +166,24 @@ const Hero: React.FC = () => {
             </div>
           </div>
         </div>
+
       </div>
 
-    </section>
+
+
+      {/* LADO DIREITO: Imagem */}
+      <div className="w-full lg:w-[45%] h-[40vh] lg:h-full relative order-1 lg:order-2 bg-stone-200 overflow-hidden">
+        <div ref={imageRef} className="w-full h-[120%] relative -top-[10%]">
+          <img
+            src={heroImg}
+            alt="Psicólogo Luiz Felipe"
+            className="w-full h-full object-cover object-top"
+          />
+          <div className="absolute inset-0 bg-stone-900/10 mix-blend-multiply"></div>
+        </div>
+      </div>
+
+    </section >
   );
 };
 

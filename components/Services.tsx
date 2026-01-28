@@ -12,26 +12,26 @@ const Services: React.FC = () => {
         const ctx = gsap.context(() => {
             // Header Reveal
             gsap.from(".reveal-header", {
-                y: 50,
+                y: 30,
                 opacity: 0,
-                duration: 1,
+                duration: 0.8,
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: ".header-trigger",
-                    start: "top 90%", // 85 -> 90
+                    start: "top bottom", // Immediate
                 }
             });
 
             // Bento Grid Stagger
             gsap.from(".bento-item", {
-                y: 50,
+                y: 30,
                 opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
+                duration: 0.6,
+                stagger: 0.05,
                 ease: "power2.out",
                 scrollTrigger: {
                     trigger: ".grid-trigger",
-                    start: "top 90%", // 80 -> 90
+                    start: "top bottom", // Immediate
                 }
             });
 

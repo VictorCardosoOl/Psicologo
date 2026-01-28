@@ -15,14 +15,14 @@ const About: React.FC = () => {
 
       // Text Reveal
       gsap.from(".reveal-text", {
-        y: 40,
+        y: 30,
         opacity: 0,
-        duration: 1,
-        stagger: 0.1,
+        duration: 0.8,
+        stagger: 0.05,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".text-trigger",
-          start: "top 90%", // 80 -> 90
+          start: "top bottom", // Immediate
         }
       });
 
@@ -30,12 +30,12 @@ const About: React.FC = () => {
       gsap.from(".credential-item", {
         scale: 0.9,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
+        duration: 0.6,
+        stagger: 0.1,
         ease: "back.out(1.5)",
         scrollTrigger: {
           trigger: ".credentials-trigger",
-          start: "top 95%", // 90 -> 95 (very eager)
+          start: "top bottom", // Immediate
         }
       });
 
@@ -45,11 +45,11 @@ const About: React.FC = () => {
         {
           opacity: 1,
           scale: 1,
-          duration: 1.2,
+          duration: 1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".image-trigger",
-            start: "top 85%",
+            start: "top bottom", // Immediate
           }
         }
       );
