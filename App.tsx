@@ -8,7 +8,7 @@ import Services from './components/Services';
 import FAQ from './components/FAQ';
 
 import Footer from './components/Footer';
-import WhatsAppFloat from './components/ChatWidget';
+import ChatWidget from './components/ChatWidget';
 import SmoothScrollLayout from './components/SmoothScrollLayout';
 
 const App: React.FC = () => {
@@ -39,7 +39,7 @@ const App: React.FC = () => {
         <Footer />
       </SmoothScrollLayout>
 
-      <WhatsAppFloat />
+      <ChatWidget />
     </div>
   );
 };

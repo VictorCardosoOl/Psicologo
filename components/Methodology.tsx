@@ -19,7 +19,7 @@ const Methodology: React.FC = () => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".intro-trigger",
-          start: "top 80%",
+          start: "top 90%", // 80 -> 90
         }
       });
 
@@ -30,8 +30,8 @@ const Methodology: React.FC = () => {
         duration: 1.2,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: ".intro-trigger",
-          start: "top 80%",
+          trigger: ".intro-trigger", // Keep same trigger
+          start: "top 90%",
         }
       });
 
@@ -44,7 +44,7 @@ const Methodology: React.FC = () => {
         ease: "back.out(1.7)",
         scrollTrigger: {
           trigger: ".pillars-trigger",
-          start: "top 85%",
+          start: "top 90%", // 85 -> 90
         }
       });
 

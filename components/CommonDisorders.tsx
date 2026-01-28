@@ -22,7 +22,7 @@ const CommonDisorders: React.FC = () => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".header-trigger",
-          start: "top 80%",
+          start: "top 90%", // Was 80%
         }
       });
 
@@ -35,7 +35,7 @@ const CommonDisorders: React.FC = () => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".list-trigger",
-          start: "top 85%",
+          start: "top 90%", // Was 85%
         }
       });
 

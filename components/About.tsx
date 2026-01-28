@@ -22,7 +22,7 @@ const About: React.FC = () => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".text-trigger",
-          start: "top 80%",
+          start: "top 90%", // 80 -> 90
         }
       });
 
@@ -35,7 +35,7 @@ const About: React.FC = () => {
         ease: "back.out(1.5)",
         scrollTrigger: {
           trigger: ".credentials-trigger",
-          start: "top 90%",
+          start: "top 95%", // 90 -> 95 (very eager)
         }
       });
 

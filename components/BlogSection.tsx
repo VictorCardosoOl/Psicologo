@@ -36,7 +36,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ onReadArticle }) => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".blog-header",
-          start: "top 80%",
+          start: "top 90%",
         }
       });
 
@@ -49,7 +49,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ onReadArticle }) => {
         ease: "back.out(1.7)",
         scrollTrigger: {
           trigger: ".blog-header",
-          start: "top 80%",
+          start: "top 90%",
         }
       });
 
@@ -62,7 +62,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ onReadArticle }) => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".blog-grid",
-          start: "top 85%",
+          start: "top 90%",
         }
       });
 

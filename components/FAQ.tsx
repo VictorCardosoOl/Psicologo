@@ -20,7 +20,7 @@ const FAQ: React.FC = () => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".faq-list",
-          start: "top 85%",
+          start: "top 90%", // 85 -> 90
         }
       });
     }, containerRef);

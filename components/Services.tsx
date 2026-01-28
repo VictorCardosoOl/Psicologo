@@ -18,7 +18,7 @@ const Services: React.FC = () => {
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: ".header-trigger",
-                    start: "top 85%",
+                    start: "top 90%", // 85 -> 90
                 }
             });
 
@@ -31,7 +31,7 @@ const Services: React.FC = () => {
                 ease: "power2.out",
                 scrollTrigger: {
                     trigger: ".grid-trigger",
-                    start: "top 80%",
+                    start: "top 90%", // 80 -> 90
                 }
             });
 
