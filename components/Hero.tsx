@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
+
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -77,13 +77,7 @@ const Hero: React.FC = () => {
         }
       });
 
-      // Badge Rotation
-      gsap.to(badgeRef.current, {
-        rotate: 360,
-        duration: 20,
-        repeat: -1,
-        ease: "linear"
-      });
+
 
     }, containerRef);
 
@@ -148,26 +142,9 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Badge Giratório (Posicionado na div da esquerda para não ser cortado pelo overflow-hidden da direita) */}
-        <div className="absolute bottom-[-1px] left-[-1px] lg:bottom-16 lg:-right-20 z-30 hidden lg:block">
-          <div className="relative w-40 h-40 flex items-center justify-center pointer-events-none">
-            {/* Círculo branco de fundo para contraste sobre a imagem */}
-            <div className="absolute inset-4 bg-[#FDFCFB] rounded-full blur-xl opacity-80"></div>
-
-            <div ref={badgeRef} className="absolute inset-0 w-full h-full">
-              <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
-                <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
-                <text className="font-serif text-[10px] font-medium uppercase tracking-[0.18em] fill-stone-800">
-                  <textPath href="#circlePath" startOffset="0%">
-                    • Psicoterapia Baseada em Evidências •
-                  </textPath>
-                </text>
-              </svg>
-            </div>
-          </div>
-        </div>
-
       </div>
+
+
 
 
 
